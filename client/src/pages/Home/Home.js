@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable object-curly-newline */
 import React from 'react'
@@ -10,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../theme'
 import HomeCard from '../../components/HomeCard'
 import HomeLinks from '../../data/HomeLinks'
-import BottomNav from '../../components/BottomNav'
+import BottomNav from '../../components/BottomNav/index'
 
 const styles = StyleSheet.create({
   root: {
@@ -79,7 +80,7 @@ const Home = () => (
             p="30px"
           >
             <Image source={images.stats} alt="donation image" />
-            <Box>
+            <Box ml="15px">
               <Text style={styles.meals}>
                 You’ve provided <Text style={styles.meals_txt}>17 meals</Text>{' '}
                 worth of food this year

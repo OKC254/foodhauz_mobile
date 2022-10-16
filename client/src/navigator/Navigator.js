@@ -3,8 +3,12 @@ import { NavigationContainer } from '@react-navigation/native'
 import { Text } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { authenticate } from 'slices/app.slice'
+import { createStackNavigator } from '@react-navigation/stack'
 
-import DrawerNavigator from './Drawer'
+import Onboarding from '../pages/Onboarding'
+import Home from '../pages/Home/Home'
+
+const Stack = createStackNavigator()
 
 const Navigator = () => {
   const { checked, loggedIn } = useSelector((state) => state.app)
@@ -19,7 +23,13 @@ const Navigator = () => {
 
   return checked ? (
     <NavigationContainer>
-      <DrawerNavigator />
+      <Stack.Navigator
+        initialRouteName="Onboarding"
+        screenOptions={{ headerShown: false }}
+      >
+        <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen name="Home" component={Home} />
+      </Stack.Navigator>
     </NavigationContainer>
   ) : (
     <Text>Loading...</Text>

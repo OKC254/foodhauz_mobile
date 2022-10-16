@@ -1,16 +1,103 @@
+/* eslint-disable no-unused-expressions */
+/* eslint-disable indent */
+/* eslint-disable operator-linebreak */
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-nested-ternary */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-wrap-multilines */
 /* eslint-disable object-curly-newline */
 // import { Text } from 'react-native'
 import React from 'react'
-import { Box, Center, HStack, Icon, Pressable } from 'native-base'
+import {
+  Box,
+  Center,
+  HStack,
+  Icon,
+  Pressable,
+  useFormControlContext,
+  FooterTab,
+  Button,
+  Footer,
+  Text,
+  View,
+} from 'native-base'
 import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
 } from '@expo/vector-icons'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { colors } from '../../theme'
 
+import Home from '../../pages/Home/Home'
+import Onboarding from '../../pages/Onboarding'
+
+const Tab = createBottomTabNavigator()
+
 // const styles = StyleSheet.create({})
+
+const BottomNavigation = ({ state, descriptors, navigation }) => (
+  <View>
+    {state.routes.map((route, index) => {
+      const { options } = descriptors[route.key]
+      const label =
+        options.tabBarLabel !== undefined
+          ? options.tabBarLabel
+          : options.title !== undefined
+          ? options.title
+          : route.name
+
+      const isFocused = state.index === index
+
+      const onPress = () => {
+        const event = navigation.emit({
+          type: 'tabPress',
+          target: route.key,
+        })
+
+        if (!isFocused && !event.defaultPrevented) {
+          navigation.navigate(route.name)
+        }
+      }
+
+      const onLongPress = () => {
+        navigation.emit({
+          type: 'tabLongPress',
+          target: route.key,
+        })
+      }
+
+      return (
+        <Button
+          active={isFocused}
+          vertical
+          onPress={onPress}
+          onLongPress={onLongPress}
+          key={index}
+        >
+          <Icon name={options.icon} />
+          <Text>{label}</Text>
+        </Button>
+      )
+    })}
+  </View>
+)
+
+export const TabNavigator = () => (
+  <Tab.Navigator
+    initialRouteName="Home"
+    tabBar={(props) => <BottomNavigation {...props} />}
+  >
+    <Tab.Screen name="Home" component={Home} options={{ icon: 'home' }} />
+    <Tab.Screen
+      name="OnBoarding"
+      component={Onboarding}
+      options={{ icon: 'home' }}
+    />
+  </Tab.Navigator>
+)
 
 const BottomNav = () => {
   const [selected, setSelected] = React.useState(0)

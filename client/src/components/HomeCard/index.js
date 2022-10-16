@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
 const HomeCard = ({ title, description }) => (
   <TouchableOpacity>
     <Flex
-      p="30px"
+      px="30px"
+      py="35px"
       flexDir="row"
       alignItems="center"
       justifyContent="space-between"

@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const Onboarding = () => (
+const Onboarding = ({ navigation }) => (
   <View style={styles.root}>
     <ImageBackground
       source={images.background_img}
@@ -70,7 +70,9 @@ const Onboarding = () => (
             borderRadius="50px"
             h="50px"
             bg={colors.primary_color}
-            // pt="150px"
+            onPress={() => {
+              navigation.navigate('Home')
+            }}
             position="relative"
             bottom="-70px"
           >
