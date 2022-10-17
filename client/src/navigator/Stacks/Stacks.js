@@ -6,6 +6,7 @@ import Profile from 'pages/Profile'
 import Details from 'pages/Details'
 import HeaderLeft from './HeaderLeft'
 import HeaderTitle from './HeaderTitle'
+import SignUp from '../../pages/Account/SignUp'
 
 // ------------------------------------
 // Constants
@@ -70,6 +71,30 @@ export const ProfileNavigator = () => (
       component={Details}
       options={{
         title: 'Details',
+      }}
+    />
+  </Stack.Navigator>
+)
+export const AccountNavigator = () => (
+  <Stack.Navigator
+    initialRouteName="Account"
+    headerMode="screen"
+    screenOptions={navigationProps}
+  >
+    <Stack.Screen
+      name="Account"
+      component={Details}
+      options={({ navigation }) => ({
+        title: 'Account',
+        headerLeft: () => <HeaderLeft navigation={navigation} />,
+        headerTitle: () => <HeaderTitle />,
+      })}
+    />
+    <Stack.Screen
+      name="SignUp"
+      component={SignUp}
+      options={{
+        title: 'SignUp',
       }}
     />
   </Stack.Navigator>
