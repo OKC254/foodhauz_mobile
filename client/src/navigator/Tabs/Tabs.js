@@ -33,10 +33,28 @@ const TabNavigator = () => (
                 solid
               />
             )
+          case 'Add':
+            return (
+              <FontIcon
+                name="user"
+                color={focused ? colors.lightPurple : colors.gray}
+                size={20}
+                solid
+              />
+            )
+          case 'History':
+            return (
+              <FontIcon
+                name="user"
+                color={focused ? colors.lightPurple : colors.gray}
+                size={20}
+                solid
+              />
+            )
           case 'Account':
             return (
               <FontIcon
-                name="sign"
+                name="user"
                 color={focused ? colors.lightPurple : colors.gray}
                 size={20}
                 solid
@@ -58,7 +76,7 @@ const TabNavigator = () => (
         // paddingTop: 5,
       },
     }}
-    initialRouteName="Home"
+    initialRouteName="Onboarding"
     swipeEnabled={false}
   >
     <Tab.Screen name="Home" component={HomeNavigator} />

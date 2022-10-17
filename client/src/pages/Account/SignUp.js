@@ -16,7 +16,7 @@ import {
 } from 'native-base'
 // import PropTypes from 'prop-types';
 
-const SignUp = () => (
+const SignUp = ({ navigation }) => (
   <Center w="100%">
     <Box safeArea py="8" w="90%" maxW="290">
       <Heading
@@ -59,11 +59,17 @@ const SignUp = () => (
         <HStack space={2}>
           <Checkbox />
           <Text mt="2" colorScheme="#000000">
-            By clicking create account I agree that i have read and accepted
-            the Terms of Use and Privacy Policy
+            By clicking create account I agree that i have read and accepted the
+            Terms of Use and Privacy Policy
           </Text>
         </HStack>
-        <Button mt="2" colorScheme="indigo">
+        <Button
+          mt="2"
+          colorScheme="indigo"
+          onPress={() => {
+            navigation.navigate('Home')
+          }}
+        >
           Sign Up
         </Button>
         <HStack mt="6" justifyContent="center">

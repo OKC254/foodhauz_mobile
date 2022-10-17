@@ -13,7 +13,7 @@ import {
   Center,
 } from 'native-base'
 
-const SignIn = () => (
+const SignIn = ({ navigation }) => (
   <Center w="100%">
     <Center safeArea p="2" py="8" w="90%" maxW="290">
       <Heading
@@ -58,7 +58,13 @@ const SignIn = () => (
             Forgot Password?
           </Link>
         </FormControl>
-        <Button mt="2" colorScheme="indigo">
+        <Button
+          mt="2"
+          colorScheme="indigo"
+          onPress={() => {
+            navigation.navigate('Home')
+          }}
+        >
           Sign in
         </Button>
         <HStack mt="6" justifyContent="center">
