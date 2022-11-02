@@ -1,0 +1,44 @@
+instructions on how to run the backend server:
+
+    open the project folder (backend) in vs code or cmd terminal on your local machine
+    if you are using vscode open the vscode terminal
+
+    run "pip install virtualenv" to install virtualenv if not installed
+
+    run this command to create a virtual environment:
+      NB/ make sure you have python 3.10 or above installed
+      $ virtualenv --python="<path/to/python3.10_or_above_executable>" "/path/to/new/virtualenv/"
+      e.g virtualenv --python="/usr/bin/python3.10" venv
+
+    then activate the virtual environment from the directory you have created the venv, in our case the current directory
+      $ . venv/bin/activate (for Linux)
+      $ . venv/scripts/activate (for Windows OS)
+
+    create a .env file in the settings folder and add the necessary details as shown below:
+
+      SECRET_KEY=your_app_secret_key
+
+      #database creds
+      DATABASE_NAME=your_db_name
+      DATABASE_USER=your_db_user
+      DATABASE_PASSWORD=your_db_password
+      DATABASE_HOST=your_db_host
+      DATABASE_PORT=your_db_port
+
+      #email creds
+      EMAIL_HOST_USER=your_site_emil
+      EMAIL_HOST_PASSWORD=your_site_email_password
+
+    then save
+
+    while in the foodhauz_backend directorate, run the following command to install all necessary packages
+      $ pip install -r requirements.txt
+
+      remember to run migrations as below after installing the packages
+
+    next run the commands below to migrate models to the database
+      $ python manage.py makemigrations
+      $ python manage.py migrate
+
+    next command will run the server
+      $ python manage.py runserver
