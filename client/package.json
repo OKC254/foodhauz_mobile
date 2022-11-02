@@ -11,6 +11,7 @@
     "test": "node_modules/.bin/jest --passWithNoTests"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.11",
     "@expo/vector-icons": "^13.0.0",
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/bottom-tabs": "^5.11.2",
@@ -31,6 +32,7 @@
     "prop-types": "^15.7.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-icons": "^4.6.0",
     "react-native": "0.64.3",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-reanimated": "~2.3.1",
@@ -85,9 +87,8 @@
   },
   "lint-staged": {
     "*.{js,jsx}": [
-      "pretty-quick --staged",
-      "yarn lint",
-      "yarn test"
+      "pretty-quick --staged"
+
     ]
   }
 }

@@ -23,7 +23,7 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'max-len': 'off',
-    'react/prop-types': [1],
+    'react/prop-types': [0],
     'linebreak-style': 0,
     'global-require': 'off',
     'no-console': 'off',

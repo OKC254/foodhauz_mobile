@@ -1,95 +1,122 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import * as React from 'react'
+/* eslint-disable no-lone-blocks */
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
+import { colors } from 'theme'
+import images from '../../theme/images'
+// import { constants } from '../../theme'
+
+// const screenHeight = Dimensions.get('window').height
+const screenWidth = Dimensions.get('window').width
 import {
-  Text,
+  Box,
   Heading,
+  Text,
   VStack,
+  Link,
   FormControl,
   Input,
-  Link,
   Button,
   HStack,
-  Center,
+  Divider,
 } from 'native-base'
-
+const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: colors.lightGrayPurple,
+  },
+  img: {
+    height: '100%',
+    width: screenWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+})
 const SignIn = ({ navigation }) => (
-  <Center w="100%">
-    <Center safeArea p="2" py="8" w="90%" maxW="290">
-      <Heading
-        size="lg"
-        fontWeight="600"
-        color="coolGray.800"
-        _dark={{
-          color: 'warmGray.50',
-        }}
-      >
-        Welcome Back
-      </Heading>
-      <Heading
-        mt="1"
-        _dark={{
-          color: 'warmGray.200',
-        }}
-        color="coolGray.600"
-        fontWeight="medium"
-        size="xs"
-      >
-        Login with
-      </Heading>
-
-      <VStack space={3} mt="5">
-        <FormControl>
-          <FormControl.Label>Email Address</FormControl.Label>
-          <Input />
-        </FormControl>
-        <FormControl>
-          <FormControl.Label>Password</FormControl.Label>
-          <Input type="password" />
-          <Link
-            _text={{
-              fontSize: 'xs',
-              fontWeight: '500',
-              color: 'indigo.500',
-            }}
-            alignSelf="flex-end"
-            mt="1"
-          >
-            Forgot Password?
-          </Link>
-        </FormControl>
-        <Button
-          mt="2"
-          colorScheme="indigo"
-          onPress={() => {
-            navigation.navigate('Home')
+  <View style={styles.root}>
+    <ImageBackground
+      source={images.background_img}
+      resizeMode="cover"
+      style={styles.img}
+    >
+      <Box safeArea paddingTop="10px">
+        <Heading
+          alignSelf={'center'}
+          size="lg"
+          paddingBottom={5}
+          _dark={{
+            color: '#054544',
           }}
+          fontWeight="semibold"
         >
-          Sign in
-        </Button>
-        <HStack mt="6" justifyContent="center">
-          <Text
-            fontSize="sm"
-            color="coolGray.600"
-            _dark={{
-              color: 'warmGray.200',
-            }}
-          >
-            Don't have an account.{' '}
-          </Text>
+          Welcome Back
+        </Heading>
+        <Text alignSelf={'center'} color="#054544" fontWeight="semibold">
+          Login With
+        </Text>
+        <VStack paddingBottom={10}>
+          <FormControl paddingBottom={5}>
+            <FormControl.Label>Email Address</FormControl.Label>
+            <Input placeholder="example@gmail.com" type="text" bg="#FFFFFF" />
+          </FormControl>
+          <FormControl>
+            <FormControl.Label>Password</FormControl.Label>
+            <Input placeholder="............" bg="#FFFFFF" type="password" />
+          </FormControl>
           <Link
+            mt={5}
             _text={{
               color: 'indigo.500',
               fontWeight: 'medium',
               fontSize: 'sm',
             }}
-            href="https://mobile.twitter.com/home"
+            href="https://docs.nativebase.io"
+            isExternal
+            alignSelf={'center'}
           >
-            Create one
+            Forgot Password?
           </Link>
-        </HStack>
-      </VStack>
-    </Center>
-  </Center>
+          <Button
+            mt={5}
+            borderRadius="50px"
+            h="40px"
+            bg={colors.primary_color}
+            position="relative"
+            onPress={() => {
+              navigation.navigate('NewDonationPack')
+            }}
+          >
+            Sign In
+          </Button>
+          <HStack mt={1} justifyContent="center">
+            <Text
+              fontSize="sm"
+              color="coolGray.600"
+              _dark={{
+                color: 'warmGray.200',
+              }}
+            >
+              Don't have an account?{' '}
+            </Text>
+            <Link
+              _text={{
+                color: 'indigo.500',
+                fontWeight: 'medium',
+                fontSize: 'sm',
+              }}
+              href="https://jesse-zhou.com/"
+            >
+              create one
+            </Link>
+          </HStack>
+        </VStack>
+      </Box>
+    </ImageBackground>
+  </View>
 )
 export default SignIn
