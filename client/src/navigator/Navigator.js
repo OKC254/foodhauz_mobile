@@ -9,6 +9,8 @@ import SignUp from '../pages/Account/SignUp'
 import Onboarding from '../pages/Onboarding'
 import Home from '../pages/Home/Home'
 import SignIn from '../pages/Account/SignIn'
+import SelectLocation from '../pages/SelectLocation'
+import ChooseAccountType from '../pages/Account/ChooseAccountType'
 // import NewDonationPack from '../pages/Donationpack/NewDonationPack'
 // import DonationDetails from '../pages/Donationpack/DonatioDetails'
 
@@ -35,6 +37,8 @@ const Navigator = () => {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="SignIn" component={SignIn} />
+        <Stack.Screen name="ChooseAccountType" component={ChooseAccountType} />
+        <Stack.Screen name="SelectLocation" component={SelectLocation} />
         {/* <Stack.Screen name="NewDonationPack" component={NewDonationPack} /> */}
         {/* <Stack.Screen name="NewDonationPack" component={DonationDetails} /> */}
       </Stack.Navigator>

@@ -1,13 +1,8 @@
 /* eslint-disable no-lone-blocks */
 import React from 'react'
-//import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
-import images from '../../theme/images'
-// import { constants } from '../../theme'
-
-// const screenHeight = Dimensions.get('window').height
-const screenWidth = Dimensions.get('window').width
 import {
   Box,
   Heading,
@@ -21,6 +16,12 @@ import {
   Checkbox,
   HStack,
 } from 'native-base'
+import images from '../../theme/images'
+// import { constants } from '../../theme'
+
+// const screenHeight = Dimensions.get('window').height
+const screenWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -45,8 +46,8 @@ const SignUp = ({ navigation }) => (
     >
       <Box safeArea padding="40px">
         <Heading
-          mt={'50px'}
-          alignSelf={'center'}
+          mt="50px"
+          alignSelf="center"
           size="md"
           color="#054544"
           _dark={{
@@ -57,7 +58,7 @@ const SignUp = ({ navigation }) => (
           Create Account
         </Heading>
         <Avatar
-          alignSelf={'center'}
+          alignSelf="center"
           bg="green.500"
           size="2xl"
           source={{
@@ -98,10 +99,10 @@ const SignUp = ({ navigation }) => (
             bg={colors.primary_color}
             position="relative"
             onPress={() => {
-              navigation.navigate('SignIn')
+              navigation.navigate('ChooseAccountType')
             }}
           >
-            Sign Up
+            Continue
           </Button>
           <HStack justifyContent="center">
             <Text
