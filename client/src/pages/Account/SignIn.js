@@ -1,15 +1,7 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-lone-blocks */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
-import images from '../../theme/images'
-// import { constants } from '../../theme'
-
-// const screenHeight = Dimensions.get('window').height
-const screenWidth = Dimensions.get('window').width
 import {
   Box,
   Heading,
@@ -23,6 +15,11 @@ import {
   Divider,
 } from 'native-base'
 import DonationPackStart from '../DonationPack/DonationPackStart'
+import images from '../../theme/images'
+// import { constants } from '../../theme'
+
+// const screenHeight = Dimensions.get('window').height
+const screenWidth = Dimensions.get('window').width
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -47,7 +44,7 @@ const SignIn = ({ navigation }) => (
     >
       <Box safeArea paddingTop="10px">
         <Heading
-          alignSelf={'center'}
+          alignSelf="center"
           size="lg"
           paddingBottom={5}
           _dark={{
@@ -57,7 +54,7 @@ const SignIn = ({ navigation }) => (
         >
           Welcome Back
         </Heading>
-        <Text alignSelf={'center'} color="#054544" fontWeight="semibold">
+        <Text alignSelf="center" color="#054544" fontWeight="semibold">
           Login With
         </Text>
         <VStack paddingBottom={10}>
@@ -78,7 +75,7 @@ const SignIn = ({ navigation }) => (
             }}
             href="https://docs.nativebase.io"
             isExternal
-            alignSelf={'center'}
+            alignSelf="center"
           >
             Forgot Password?
           </Link>
@@ -90,6 +87,8 @@ const SignIn = ({ navigation }) => (
             position="relative"
             onPress={() => {
               navigation.navigate('DonationPackStart')
+
+              navigation.navigate('Home')
             }}
           >
             Sign In
