@@ -22,6 +22,7 @@ import {
   HStack,
   Divider,
 } from 'native-base'
+import DonationPackStart from '../DonationPack/DonationPackStart'
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -88,7 +89,7 @@ const SignIn = ({ navigation }) => (
             bg={colors.primary_color}
             position="relative"
             onPress={() => {
-              navigation.navigate('NewDonationPack')
+              navigation.navigate('DonationPackStart')
             }}
           >
             Sign In
