@@ -14,12 +14,12 @@ import {
   HStack,
   Divider,
 } from 'native-base'
+import DonationPackStart from '../DonationPack/DonationPackStart'
 import images from '../../theme/images'
 // import { constants } from '../../theme'
 
 // const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width
-
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -42,7 +42,7 @@ const SignIn = ({ navigation }) => (
       resizeMode="cover"
       style={styles.img}
     >
-      <Box safeArea paddingTop="10px">
+      <Box safeArea paddingTop="10px" paddingX="30px">
         <Heading
           alignSelf="center"
           size="lg"
@@ -86,6 +86,8 @@ const SignIn = ({ navigation }) => (
             bg={colors.primary_color}
             position="relative"
             onPress={() => {
+              navigation.navigate('DonationPackStart')
+
               navigation.navigate('Home')
             }}
           >
