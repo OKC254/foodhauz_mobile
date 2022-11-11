@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import { View } from 'react-native'
-import { Provider } from 'react-redux'
-import { NativeBaseProvider } from 'native-base'
-import store from 'utils/store'
-import 'utils/ignore'
+import React, {useState, useEffect} from "react";
+import {View} from "react-native";
+import {Provider} from "react-redux";
+import {NativeBaseProvider} from "native-base";
+
+import store from "./redux/store";
+import "./utils/ignore";
 
 // assets
-import { imageAssets } from 'theme/images'
-import { fontAssets } from 'theme/fonts'
-import Navigator from './navigator'
+import {imageAssets} from "./theme/images";
+import {fontAssets} from "./theme/fonts";
+import Navigator from "./navigation";
 
 const App = () => {
-  const [didLoad, setDidLoad] = useState(false)
+  const [didLoad, setDidLoad] = useState(false);
 
   // assets preloading
   const handleLoadAssets = async () => {
-    await Promise.all([...imageAssets, ...fontAssets])
-    setDidLoad(true)
-  }
+    await Promise.all([...imageAssets, ...fontAssets]);
+    setDidLoad(true);
+  };
 
   useEffect(() => {
-    handleLoadAssets()
-  }, [])
+    handleLoadAssets();
+  }, []);
 
   return didLoad ? (
     <Provider store={store}>
@@ -31,7 +32,7 @@ const App = () => {
     </Provider>
   ) : (
     <View />
-  )
-}
+  );
+};
 
-export default App
+export default App;

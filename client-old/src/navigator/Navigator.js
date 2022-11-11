@@ -7,7 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import SignUp from '../pages/Account/SignUp'
 
 import Onboarding from '../pages/Onboarding'
-import Home from '../pages/Home/Home'
+import Home from '../pages/Home'
 import SignIn from '../pages/Account/SignIn'
 import SelectLocation from '../pages/SelectLocation'
 import ChooseAccountType from '../pages/Account/ChooseAccountType'
