@@ -11,6 +11,12 @@ import Home from '../pages/Home/Home'
 import SignIn from '../pages/Account/SignIn'
 import SelectLocation from '../pages/SelectLocation'
 import ChooseAccountType from '../pages/Account/ChooseAccountType'
+import DonationPackStart from '../pages/DonationPack/DonationPackStart'
+import DonationPackSelect from '../pages/DonationPack/DonationPackSelect'
+import DonationCard from '../pages/DonationPack/Cards/DonationCard'
+import DonationPackCards from '../pages/DonationPack/DonationPackCards'
+import BottomTabCard from '../pages/DonationPack/Cards/BottomTabCard'
+import NewDonationPackCard from '../pages/DonationPack/Cards/NewDonationPackCard'
 // import NewDonationPack from '../pages/Donationpack/NewDonationPack'
 // import DonationDetails from '../pages/Donationpack/DonatioDetails'
 
@@ -39,6 +45,13 @@ const Navigator = () => {
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="ChooseAccountType" component={ChooseAccountType} />
         <Stack.Screen name="SelectLocation" component={SelectLocation} />
+        <Stack.Screen name="DonationPackStart" component={DonationPackStart} />
+        <Stack.Screen
+          name="DonationPackSelect"
+          component={DonationPackSelect}
+        />
+        <Stack.Screen name="DonationCard" component={DonationCard} />
+        <Stack.Screen name="DonationPackCards" component={DonationPackCards} />
         {/* <Stack.Screen name="NewDonationPack" component={NewDonationPack} /> */}
         {/* <Stack.Screen name="NewDonationPack" component={DonationDetails} /> */}
       </Stack.Navigator>
