@@ -19,6 +19,7 @@ import {
   AddIcon,
   VStack,
   HStack,
+  useDisclose,
 } from 'native-base'
 import images from '../../theme/images'
 import DonationPackSelect from './DonationPackSelect'
@@ -47,49 +48,53 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const DonationPackStart = ({ navigation }) => (
-  <View style={styles.root}>
-    <VStack h="100%" w="100%" bg="white">
-      <NewDonationPackCard />
-      <VStack alignItems="center" justifyContent="center" h="90%">
-        {/* <Box alignItems="center" h="30%"> */}
-        <Box alignItems="center">
-          <Avatar
-            alignItems="center"
-            bg="green.500"
-            size="2xl"
-            source={images.background_img}
-          />
-          <Text
-            paddingTop="20px"
-            fontWeight="400"
-            fontSize="13px"
-            lineHeight="20px"
-            fontStyle="normal"
+const DonationPackStart = ({ navigation }) => {
+  const { isOpen, onOpen, onClose } = useDisclose()
+
+  return (
+    <View style={styles.root}>
+      <VStack h="100%" w="100%" bg="white">
+        <NewDonationPackCard />
+        <VStack alignItems="center" justifyContent="center" h="90%">
+          {/* <Box alignItems="center" h="30%"> */}
+          <Box alignItems="center">
+            <Avatar
+              alignItems="center"
+              bg="green.500"
+              size="2xl"
+              source={images.background_img}
+            />
+            <Text
+              paddingTop="20px"
+              fontWeight="400"
+              fontSize="13px"
+              lineHeight="20px"
+              fontStyle="normal"
+            >
+              Add a Donation to get started
+            </Text>
+          </Box>
+        </VStack>
+        <Flex flexDir="row" h="20%" justifyContent="center">
+          <Button
+            borderRadius="50px"
+            h="50px"
+            w="80%"
+            textAlign="center"
+            bg={colors.primary_color}
+            position="relative"
+            onPress={onOpen}
           >
-            Add a Donation to get started
-          </Text>
-        </Box>
-      </VStack>
-      <Flex flexDir="row" h="20%" justifyContent="center">
-        <Button
-          borderRadius="50px"
-          h="50px"
-          w="80%"
-          textAlign="center"
-          bg={colors.primary_color}
-          position="relative"
-          onPress={() => {
-            navigation.navigate('DonationPackCards')
-          }}
-        >
-          Add Donation
-        </Button>
-      </Flex>
-      {/* <Box>
+            Add Donation
+          </Button>
+        </Flex>
+        <DonationPackSelect isOpen={isOpen} onClose={onClose} />
+        {/* <Box>
         <BottomTabCard />
       </Box> */}
-    </VStack>
-  </View>
-)
+      </VStack>
+    </View>
+  )
+}
+
 export default DonationPackStart

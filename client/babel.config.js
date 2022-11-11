@@ -1,21 +1,21 @@
-module.exports = (api) => {
-  api.cache(true)
+module.exports = function(api) {
+  api.cache(true);
   return {
-    presets: ['babel-preset-expo'],
+    presets: ["babel-preset-expo"],
     plugins: [
       [
-        'module-resolver',
+        "module-resolver",
         {
           alias: {
-            components: './src/components',
-            pages: './src/pages',
-            theme: './src/theme',
-            utils: './src/utils',
-            slices: './src/slices',
+            components: "./src/components",
+            screens: "./src/screens",
+            theme: "./src/theme",
+            utils: "./src/utils",
+            slices: "./src/redux/slices",
           },
         },
       ],
-      'react-native-reanimated/plugin',
+      "react-native-reanimated/plugin",
     ],
-  }
-}
+  };
+};
