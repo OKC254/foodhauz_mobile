@@ -90,14 +90,17 @@ const Home = () => (
           </Flex>
         </VStack>
       </VStack>
-      {HomeLinks.map((link, index) => (
-        <HomeCard
-          key={`link-${index}`}
-          title={link.title}
-          description={link.description}
-        />
-      ))}
-      <BottomNav />
+      <VStack h="500">
+        {HomeLinks.map((link, index) => (
+          <HomeCard
+            key={`link-${index}`}
+            title={link.title}
+            description={link.description}
+          />
+        ))}
+      </VStack>
+      <Text>hello</Text>
+      {/* <BottomNav /> */}
     </VStack>
   </SafeAreaView>
 )

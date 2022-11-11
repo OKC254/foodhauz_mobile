@@ -10,6 +10,7 @@ const images = {
   donation_img: require('../../assets/images/donation.png'),
   profile_img: require('../../assets/images/profile.png'),
   stats: require('../../assets/images/stats.png'),
+  requestReceived: require('../../assets/images/requestReceived.png'),
 }
 
 // image preloading

@@ -53,12 +53,7 @@ const NewDonationPackCard = ({ navigation }) => (
         <HStack paddingTop="20px" alignItems="center">
           <ChevronLeftIcon paddingLeft="50px" color="white" />
           <Spacer />
-          <Text
-            color="#FFFFFF"
-            fontSize="20px"
-            fontWeight="700"
-            fontFamily="Raleway"
-          >
+          <Text color="#FFFFFF" fontSize="20px" fontWeight="700">
             New Donation Pack
           </Text>
           <Spacer />

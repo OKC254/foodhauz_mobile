@@ -70,7 +70,7 @@ const DonationPackCards = ({ navigation }) => (
             navigation.navigate('SelectLocation')
           }}
         >
-          Add Donation
+          Done
         </Button>
       </Flex>
       {/* <Box>
