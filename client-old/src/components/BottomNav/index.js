@@ -1,7 +1,7 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable indent */
 /* eslint-disable operator-linebreak */
-/* eslint-disable import/no-cycle */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
@@ -29,59 +29,10 @@ import {
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { colors } from '../../theme'
 
-import Home from '../../pages/Home/Home'
 import Onboarding from '../../pages/Onboarding'
+import Home from '../../pages/Home'
 
 const Tab = createBottomTabNavigator()
-
-// const styles = StyleSheet.create({})
-
-const BottomNavigation = ({ state, descriptors, navigation }) => (
-  <View>
-    {state.routes.map((route, index) => {
-      const { options } = descriptors[route.key]
-      const label =
-        options.tabBarLabel !== undefined
-          ? options.tabBarLabel
-          : options.title !== undefined
-          ? options.title
-          : route.name
-
-      const isFocused = state.index === index
-
-      const onPress = () => {
-        const event = navigation.emit({
-          type: 'tabPress',
-          target: route.key,
-        })
-
-        if (!isFocused && !event.defaultPrevented) {
-          navigation.navigate(route.name)
-        }
-      }
-
-      const onLongPress = () => {
-        navigation.emit({
-          type: 'tabLongPress',
-          target: route.key,
-        })
-      }
-
-      return (
-        <Button
-          active={isFocused}
-          vertical
-          onPress={onPress}
-          onLongPress={onLongPress}
-          key={index}
-        >
-          <Icon name={options.icon} />
-          <Text>{label}</Text>
-        </Button>
-      )
-    })}
-  </View>
-)
 
 export const TabNavigator = () => (
   <Tab.Navigator
