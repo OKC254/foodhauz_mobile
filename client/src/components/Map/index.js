@@ -13,8 +13,22 @@ import {
 } from '../../slices/nav.slice'
 
 const MapDisplay = () => {
-  const origin = useSelector(selectOrigin)
-  const destination = useSelector(selectDestination)
+  // const origin = useSelector(selectOrigin)
+  // const description = useSelector(selectDescription)
+  const origin = {
+    location: {
+      lat: 0.005,
+      lng: 0.005,
+    },
+    description: 'hello',
+  }
+  const destination = {
+    location: {
+      lat: 0.005,
+      lng: 0.005,
+    },
+    description: 'hello',
+  }
   const mapRef = useRef(null)
   const dispatch = useDispatch()
   const GOOGLE_MAPS_APIKEY = 'hello'

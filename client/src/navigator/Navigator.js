@@ -17,6 +17,7 @@ import DonationCard from '../pages/DonationPack/Cards/DonationCard'
 import DonationPackCards from '../pages/DonationPack/DonationPackCards'
 import BottomTabCard from '../pages/DonationPack/Cards/BottomTabCard'
 import NewDonationPackCard from '../pages/DonationPack/Cards/NewDonationPackCard'
+import { TabNavigator } from '../components/BottomNav'
 // import NewDonationPack from '../pages/Donationpack/NewDonationPack'
 // import DonationDetails from '../pages/Donationpack/DonatioDetails'
 
@@ -40,7 +41,7 @@ const Navigator = () => {
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen name="Onboarding" component={Onboarding} />
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Home" component={TabNavigator} />
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="ChooseAccountType" component={ChooseAccountType} />

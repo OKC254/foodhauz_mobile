@@ -4,16 +4,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
-//import {AiOutlineEdit} from "react-icons/ai";
+// import {AiOutlineEdit} from "react-icons/ai";
 import { colors } from 'theme'
-import images from '../../theme/images'
-// import { constants } from '../../theme'
-
-// const screenHeight = Dimensions.get('window').height
-const screenWidth = Dimensions.get('window').width
-import DonationPackSelect from './DonationPackSelect'
-import DonationCard from './Cards/DonationCard'
-import DonationPackCards from './DonationPackCards'
 import { AntDesign, Ionicons, FontAwesome5 } from '@expo/vector-icons'
 import {
   Box,
@@ -28,7 +20,17 @@ import {
   VStack,
   HStack,
 } from 'native-base'
+import images from '../../theme/images'
+import DonationPackSelect from './DonationPackSelect'
+import DonationCard from './Cards/DonationCard'
+import DonationPackCards from './DonationPackCards'
 import NewDonationPackCard from './Cards/NewDonationPackCard'
+import BottomTabCard from './Cards/BottomTabCard'
+// import { constants } from '../../theme'
+
+const screenHeight = Dimensions.get('window').height
+const screenWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -36,6 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.lightGrayPurple,
+    height: screenHeight,
   },
   img: {
     height: '100%',
@@ -46,32 +49,34 @@ const styles = StyleSheet.create({
 })
 const DonationPackStart = ({ navigation }) => (
   <View style={styles.root}>
-    <Box backgroundColor={'#FFFFFF'}>
-      <Box alignItems={'center'}>
-        <NewDonationPackCard />
-      </Box>
-      <VStack>
-        <Avatar
-          alignItems={'center'}
-          bg="green.500"
-          size="2xl"
-          source={images.background_img}
-        />
-        <Text
-          paddingTop={'20px'}
-          fontWeight={'400'}
-          fontSize={'13px'}
-          lineHeight={'20px'}
-          fontFamily={'Raleway'}
-          fontStyle={'normal'}
-        >
-          Add a Donation to get started
-        </Text>
+    <VStack h="100%" w="100%" bg="white">
+      <NewDonationPackCard />
+      <VStack alignItems="center" justifyContent="center" h="90%">
+        {/* <Box alignItems="center" h="30%"> */}
+        <Box alignItems="center">
+          <Avatar
+            alignItems="center"
+            bg="green.500"
+            size="2xl"
+            source={images.background_img}
+          />
+          <Text
+            paddingTop="20px"
+            fontWeight="400"
+            fontSize="13px"
+            lineHeight="20px"
+            fontStyle="normal"
+          >
+            Add a Donation to get started
+          </Text>
+        </Box>
       </VStack>
-      <Box>
+      <Flex flexDir="row" h="20%" justifyContent="center">
         <Button
           borderRadius="50px"
-          h="40px"
+          h="50px"
+          w="80%"
+          textAlign="center"
           bg={colors.primary_color}
           position="relative"
           onPress={() => {
@@ -80,11 +85,11 @@ const DonationPackStart = ({ navigation }) => (
         >
           Add Donation
         </Button>
-      </Box>
-      <Box>
+      </Flex>
+      {/* <Box>
         <BottomTabCard />
-      </Box>
-    </Box>
+      </Box> */}
+    </VStack>
   </View>
 )
 export default DonationPackStart

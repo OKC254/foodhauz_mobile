@@ -1,18 +1,8 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-lone-blocks */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
-//import {AiOutlineEdit} from "react-icons/ai";
+// import {AiOutlineEdit} from "react-icons/ai";
 import { colors } from 'theme'
-import images from '../../theme/images'
-// import { constants } from '../../theme'
-
-// const screenHeight = Dimensions.get('window').height
-const screenWidth = Dimensions.get('window').width
-import DonationPackSelect from './DonationPackSelect'
-import DonationCard from './Cards/DonationCard'
 import { AntDesign, Ionicons, FontAwesome5 } from '@expo/vector-icons'
 import {
   Box,
@@ -27,6 +17,16 @@ import {
   VStack,
   HStack,
 } from 'native-base'
+import images from '../../theme/images'
+import DonationPackSelect from './DonationPackSelect'
+import DonationCard from './Cards/DonationCard'
+import NewDonationPackCard from './Cards/NewDonationPackCard'
+import BottomTabCard from './Cards/BottomTabCard'
+// import { constants } from '../../theme'
+
+const screenHeight = Dimensions.get('window').height
+const screenWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.lightGrayPurple,
+    height: screenHeight,
   },
   img: {
     height: '100%',
@@ -42,17 +43,40 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
+
 const DonationPackCards = ({ navigation }) => (
   <View style={styles.root}>
-    <Box backgroundColor={'#FFFFFF'} alignItems={'center'}>
-      <DonationCard />
-      <DonationCard />
-      <DonationCard />
-      <DonationCard />
-      <DonationCard />
-      <DonationCard />
-      <DonationCard />
-    </Box>
+    <VStack h="100%" w="100%" bg="white">
+      <NewDonationPackCard />
+      <VStack justifyContent="center" h="90%" paddingX="30px">
+        {/* <Box alignItems="center" h="30%"> */}
+        <Box backgroundColor="#FFFFFF">
+          <DonationCard />
+          <DonationCard />
+          <DonationCard />
+          <DonationCard />
+          <DonationCard />
+        </Box>
+      </VStack>
+      <Flex flexDir="row" h="20%" justifyContent="center">
+        <Button
+          borderRadius="50px"
+          h="50px"
+          w="80%"
+          textAlign="center"
+          bg={colors.primary_color}
+          position="relative"
+          onPress={() => {
+            navigation.navigate('SelectLocation')
+          }}
+        >
+          Add Donation
+        </Button>
+      </Flex>
+      {/* <Box>
+        <BottomTabCard />
+      </Box> */}
+    </VStack>
   </View>
 )
 export default DonationPackCards

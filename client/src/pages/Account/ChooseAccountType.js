@@ -63,7 +63,7 @@ const ChooseAccountType = ({ navigation }) => {
           >
             Choose Account Type
           </Heading>
-          <Radio.Group
+          {/* <Radio.Group
             name="myRadioGroup"
             accessibilityLabel="favorite number"
             value={value}
@@ -77,7 +77,7 @@ const ChooseAccountType = ({ navigation }) => {
             <Radio value="two" my={1}>
               Two
             </Radio>
-          </Radio.Group>
+          </Radio.Group> */}
           ;
           <Box alignItems="center">
             <Pressable maxW="96">
@@ -104,6 +104,9 @@ const ChooseAccountType = ({ navigation }) => {
                   borderColor="coolGray.300"
                 >
                   <HStack alignItems="center">
+                    {/* <Radio value="one" my={1}>
+                      One
+                    </Radio> */}
                     <Badge
                       colorScheme="darkBlue"
                       _text={{
@@ -115,21 +118,13 @@ const ChooseAccountType = ({ navigation }) => {
                       Donor
                     </Badge>
                     <Spacer />
-                    <Text fontSize={10} color="coolGray.800">
+                    <Text fontSize={10} color="transparent">
                       1 month ago
                     </Text>
                   </HStack>
-                  <Text
-                    color="coolGray.800"
-                    mt="3"
-                    fontWeight="medium"
-                    fontSize="xl"
-                  >
-                    Donor
-                  </Text>
                   <Text mt="2" fontSize="sm" color="coolGray.700">
-                    Unlock powerfull time-saving tools for creating email
-                    delivery and collecting marketing data
+                    If you have access to eccess food or would like to help out
+                    those who do are in need of food, this is the app for you
                   </Text>
                 </Box>
               )}
@@ -160,6 +155,9 @@ const ChooseAccountType = ({ navigation }) => {
                   borderColor="coolGray.300"
                 >
                   <HStack alignItems="center">
+                    {/* <Radio value="two" my={1}>
+                      Two
+                    </Radio> */}
                     <Badge
                       colorScheme="darkBlue"
                       _text={{
@@ -171,21 +169,13 @@ const ChooseAccountType = ({ navigation }) => {
                       Recepient
                     </Badge>
                     <Spacer />
-                    <Text fontSize={10} color="coolGray.800">
+                    <Text fontSize={10} color="transparent">
                       1 month ago
                     </Text>
                   </HStack>
-                  <Text
-                    color="coolGray.800"
-                    mt="3"
-                    fontWeight="medium"
-                    fontSize="xl"
-                  >
-                    Donor
-                  </Text>
                   <Text mt="2" fontSize="sm" color="coolGray.700">
-                    Unlock powerfull time-saving tools for creating email
-                    delivery and collecting marketing data
+                    If you are a person in need of food, get access to food
+                    donations near you in the app
                   </Text>
                 </Box>
               )}

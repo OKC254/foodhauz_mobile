@@ -30,7 +30,8 @@ const SelectLocation = ({ navigation }) => (
           <Icon name="menu" />
         </TouchableOpacity>
         <View>
-          <MapDisplay />
+          {/* <MapDisplay /> */}
+          <Text>helo</Text>
         </View>
       </View>
       <Text>Hello</Text>

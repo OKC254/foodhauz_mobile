@@ -68,23 +68,23 @@ const SignUp = ({ navigation }) => (
         <VStack>
           <FormControl>
             <FormControl.Label>First Name</FormControl.Label>
-            <Input placeholder="First Name" type="text" bg="#FFFFFF" />
+            {/* <Input placeholder="First Name" type="text" bg="#FFFFFF" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label>Last Name</FormControl.Label>
-            <Input bg="#FFFFFF" type="text" placeholder="Last Name" />
+            {/* <Input bg="#FFFFFF" type="text" placeholder="Last Name" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label color="#000000">Email address</FormControl.Label>
-            <Input type="email" bg="#FFFFFF" placeholder="example@gmail.com" />
+            {/* <Input type="email" bg="#FFFFFF" placeholder="example@gmail.com" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input placeholder="............" bg="#FFFFFF" type="password" />
+            {/* <Input placeholder="............" bg="#FFFFFF" type="password" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label>Confirm Password</FormControl.Label>
-            <Input bg="#FFFFFF" placeholder="............" type="password" />
+            {/* <Input bg="#FFFFFF" placeholder="............" type="password" /> */}
           </FormControl>
           <HStack space={1} mt={2}>
             <Checkbox />
@@ -102,7 +102,7 @@ const SignUp = ({ navigation }) => (
               navigation.navigate('ChooseAccountType')
             }}
           >
-            Continue
+            Next
           </Button>
           <HStack justifyContent="center">
             <Text

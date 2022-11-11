@@ -42,7 +42,7 @@ const SignIn = ({ navigation }) => (
       resizeMode="cover"
       style={styles.img}
     >
-      <Box safeArea paddingTop="10px">
+      <Box safeArea paddingTop="10px" paddingX="30px">
         <Heading
           alignSelf="center"
           size="lg"
