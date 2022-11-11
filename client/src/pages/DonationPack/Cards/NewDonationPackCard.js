@@ -1,6 +1,6 @@
 import React from 'react'
-//import image from "../assets/pizza.jpg";
-import image from '../DonationPack/pizza.jpg'
+// import image from "../assets/pizza.jpg";
+import { Dimensions, View, StyleSheet } from 'react-native'
 import {
   Box,
   Heading,
@@ -13,7 +13,13 @@ import {
   Stack,
   VStack,
   Spacer,
+  ChevronLeftIcon,
 } from 'native-base'
+import image from '../pizza.jpg'
+import { colors } from '../../../theme'
+
+const screenWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -29,41 +35,32 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const NewDonationPackCard = () => {
-  return (
-    <View style={styles.root}>
-      <Box backgroundColor={'#FFFFFF'}>
-        <Box
-          alignItems={'center'}
-          borderBottomLeftRadius={'20px'}
-          borderBottomRightRadius={'20px'}
-          h="80px"
-          top={'0'}
-          left={'0'}
-          w={'410px'}
-          bg={colors.primary_color}
-          position="relative"
-          onPress={() => {
-            navigation.navigate('NewDonationPack')
-          }}
-        >
-          <HStack paddingTop={'20px'}>
-            <ChevronLeftIcon paddingLeft={'50px'} color="white" />
-            <Spacer />
-            <Text
-              color={'#FFFFFF'}
-              fontSize="20px"
-              fontWeight={'700'}
-              fontFamily={'Raleway'}
-            >
-              New Donation Pack
-            </Text>
-            <Spacer />
-            <ThreeDotsIcon paddingRight={'50px'} color="white" />
-          </HStack>
-        </Box>
+const NewDonationPackCard = ({ navigation }) => (
+  <View style={styles.root}>
+    <Box backgroundColor="#FFFFFF">
+      <Box
+        alignItems="center"
+        borderBottomLeftRadius="20px"
+        borderBottomRightRadius="20px"
+        h="70px"
+        w={screenWidth}
+        bg={colors.primary_color}
+        position="relative"
+        onPress={() => {
+          navigation.navigate('NewDonationPack')
+        }}
+      >
+        <HStack paddingTop="20px" alignItems="center">
+          <ChevronLeftIcon paddingLeft="50px" color="white" />
+          <Spacer />
+          <Text color="#FFFFFF" fontSize="20px" fontWeight="700">
+            New Donation Pack
+          </Text>
+          <Spacer />
+          <ThreeDotsIcon paddingRight="50px" color="white" />
+        </HStack>
       </Box>
-    </View>
-  )
-}
+    </Box>
+  </View>
+)
 export default NewDonationPackCard

@@ -1,13 +1,8 @@
 /* eslint-disable no-lone-blocks */
 import React from 'react'
-//import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
-import images from '../../theme/images'
-// import { constants } from '../../theme'
-
-// const screenHeight = Dimensions.get('window').height
-const screenWidth = Dimensions.get('window').width
 import {
   Box,
   Heading,
@@ -21,6 +16,12 @@ import {
   Checkbox,
   HStack,
 } from 'native-base'
+import images from '../../theme/images'
+// import { constants } from '../../theme'
+
+// const screenHeight = Dimensions.get('window').height
+const screenWidth = Dimensions.get('window').width
+
 const styles = StyleSheet.create({
   root: {
     flex: 1,
@@ -45,8 +46,8 @@ const SignUp = ({ navigation }) => (
     >
       <Box safeArea padding="40px">
         <Heading
-          mt={'50px'}
-          alignSelf={'center'}
+          mt="50px"
+          alignSelf="center"
           size="md"
           color="#054544"
           _dark={{
@@ -57,7 +58,7 @@ const SignUp = ({ navigation }) => (
           Create Account
         </Heading>
         <Avatar
-          alignSelf={'center'}
+          alignSelf="center"
           bg="green.500"
           size="2xl"
           source={{
@@ -67,23 +68,23 @@ const SignUp = ({ navigation }) => (
         <VStack>
           <FormControl>
             <FormControl.Label>First Name</FormControl.Label>
-            <Input placeholder="First Name" type="text" bg="#FFFFFF" />
+            {/* <Input placeholder="First Name" type="text" bg="#FFFFFF" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label>Last Name</FormControl.Label>
-            <Input bg="#FFFFFF" type="text" placeholder="Last Name" />
+            {/* <Input bg="#FFFFFF" type="text" placeholder="Last Name" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label color="#000000">Email address</FormControl.Label>
-            <Input type="email" bg="#FFFFFF" placeholder="example@gmail.com" />
+            {/* <Input type="email" bg="#FFFFFF" placeholder="example@gmail.com" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input placeholder="............" bg="#FFFFFF" type="password" />
+            {/* <Input placeholder="............" bg="#FFFFFF" type="password" /> */}
           </FormControl>
           <FormControl>
             <FormControl.Label>Confirm Password</FormControl.Label>
-            <Input bg="#FFFFFF" placeholder="............" type="password" />
+            {/* <Input bg="#FFFFFF" placeholder="............" type="password" /> */}
           </FormControl>
           <HStack space={1} mt={2}>
             <Checkbox />
@@ -98,10 +99,10 @@ const SignUp = ({ navigation }) => (
             bg={colors.primary_color}
             position="relative"
             onPress={() => {
-              navigation.navigate('SignIn')
+              navigation.navigate('ChooseAccountType')
             }}
           >
-            Sign Up
+            Next
           </Button>
           <HStack justifyContent="center">
             <Text

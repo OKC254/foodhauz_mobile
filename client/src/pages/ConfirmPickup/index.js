@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const Home = () => (
+const ConfirmPickup = () => (
   <SafeAreaView style={styles.root}>
     <StatusBar barStyle="light-content" />
     <VStack h="100%" w="100%" bg="white">
@@ -90,29 +90,26 @@ const Home = () => (
           </Flex>
         </VStack>
       </VStack>
-      <VStack h="500">
-        {HomeLinks.map((link, index) => (
-          <HomeCard
-            key={`link-${index}`}
-            title={link.title}
-            description={link.description}
-          />
-        ))}
-      </VStack>
-      <Text>hello</Text>
-      {/* <BottomNav /> */}
+      {HomeLinks.map((link, index) => (
+        <HomeCard
+          key={`link-${index}`}
+          title={link.title}
+          description={link.description}
+        />
+      ))}
+      <BottomNav />
     </VStack>
   </SafeAreaView>
 )
 
-Home.propTypes = {
+ConfirmPickup.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func,
   }),
 }
 
-Home.defaultProps = {
+ConfirmPickup.defaultProps = {
   navigation: { navigate: () => null },
 }
 
-export default Home
+export default ConfirmPickup
