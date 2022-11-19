@@ -15,7 +15,7 @@ import DonationPackStart from "../screens/DonationPack/DonationPackStart";
 import DonationPackSelect from "../screens/DonationPack/DonationPackSelect";
 import DonationCard from "../screens/DonationPack/Cards/DonationCard";
 import DonationPackCards from "../screens/DonationPack/DonationPackCards";
-import BottomNav, { DonorTabNavigator } from "../components/BottomNav";
+import { DonorTabNavigator } from "./Tabs/DonorTabNavigator";
 
 
 const Stack = createStackNavigator();
@@ -34,7 +34,7 @@ const Navigator = () => {
   return checked ? (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Onboarding"
+        initialRouteName="Home"
         screenOptions={{headerShown: false}}
       >
         <Stack.Screen name="Onboarding" component={Onboarding} />
