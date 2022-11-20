@@ -3,26 +3,14 @@ import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 // import {AiOutlineEdit} from "react-icons/ai";
 import { colors } from 'theme'
-import { AntDesign, Ionicons, FontAwesome5 } from '@expo/vector-icons'
 import {
   Box,
   Flex,
-  Avatar,
   Button,
-  Text,
-  Spacer,
-  ChevronLeftIcon,
-  ThreeDotsIcon,
-  AddIcon,
   VStack,
-  HStack,
 } from 'native-base'
-import images from '../../theme/images'
-import DonationPackSelect from './DonationPackSelect'
 import DonationCard from './Cards/DonationCard'
 import NewDonationPackCard from './Cards/NewDonationPackCard'
-import BottomTabCard from './Cards/BottomTabCard'
-// import { constants } from '../../theme'
 
 const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width

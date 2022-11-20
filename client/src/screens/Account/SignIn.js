@@ -16,6 +16,7 @@ import {
 } from 'native-base'
 import DonationPackStart from '../DonationPack/DonationPackStart'
 import images from '../../theme/images'
+import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
 // import { constants } from '../../theme'
 
 // const screenHeight = Dimensions.get('window').height
@@ -27,6 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.lightGrayPurple,
+    width: screenWidth,
   },
   img: {
     height: '100%',
@@ -35,49 +37,69 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const SignIn = ({ navigation }) => (
+const SignIn = ({navigation}) => (
   <View style={styles.root}>
     <ImageBackground
       source={images.background_img}
       resizeMode="cover"
       style={styles.img}
     >
-      <Box safeArea paddingTop="10px" paddingX="30px">
+      <Box safeArea paddingTop="10px" paddingX="30px" w="100%">
         <Heading
           alignSelf="center"
           size="lg"
           paddingBottom={5}
           _dark={{
-            color: '#054544',
+            color: "#054544",
           }}
-          fontWeight="semibold"
+          fontWeight="bold"
         >
           Welcome Back
         </Heading>
-        <Text alignSelf="center" color="#054544" fontWeight="semibold">
+        <Text alignSelf="center" color="#054544" fontWeight="semibold" pt={4}>
           Login With
+        </Text>
+        <HStack alignItems="center" space={5} alignSelf="center" pb={5} pt={2}>
+          <FontAwesome5 name="facebook" size={40} color="black" />
+          <AntDesign name="google" size={40} color="black"/>
+        </HStack>
+
+        <Text alignSelf="center" color="#054544" fontWeight="semibold">
+          ------------------------ or ------------------------
         </Text>
         <VStack paddingBottom={10}>
           <FormControl paddingBottom={5}>
             <FormControl.Label>Email Address</FormControl.Label>
-            <Input placeholder="example@gmail.com" type="text" bg="#FFFFFF" />
+            <Input
+              borderRadius={"40px"}
+              placeholder="example@gmail.com"
+              type="text"
+              bg="#FFFFFF"
+            />
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input placeholder="............" bg="#FFFFFF" type="password" />
+            <Input
+              borderRadius={"40px"}
+              placeholder="............"
+              bg="#FFFFFF"
+              type="password"
+            />
           </FormControl>
           <Link
-            mt={5}
+            w="100%"
+            mt={2}
             _text={{
-              color: 'indigo.500',
-              fontWeight: 'medium',
-              fontSize: 'sm',
+              color: "indigo.500",
+              fontWeight: "medium",
+              fontSize: "sm",
             }}
+            ml="60%"
             href="https://docs.nativebase.io"
             isExternal
-            alignSelf="center"
+            
           >
-            Forgot Password?
+            <Text>Forgot Password?</Text>
           </Link>
           <Button
             mt={5}
@@ -86,9 +108,9 @@ const SignIn = ({ navigation }) => (
             bg={colors.primary_color}
             position="relative"
             onPress={() => {
-              navigation.navigate('DonationPackStart')
+              navigation.navigate("DonationPackStart");
 
-              navigation.navigate('Home')
+              navigation.navigate("Home");
             }}
           >
             Sign In
@@ -98,25 +120,24 @@ const SignIn = ({ navigation }) => (
               fontSize="sm"
               color="coolGray.600"
               _dark={{
-                color: 'warmGray.200',
+                color: "warmGray.200",
               }}
             >
-              Don't have an account?{' '}
+              Don't have an account?{" "}
             </Text>
-            <Link
-              _text={{
-                color: 'indigo.500',
-                fontWeight: 'medium',
-                fontSize: 'sm',
+            <Button
+              variant="link"
+              p="0"
+              onPress={() => {
+                navigation.navigate("SignUp");
               }}
-              href="https://jesse-zhou.com/"
             >
-              create one
-            </Link>
+              Create One
+            </Button>
           </HStack>
         </VStack>
       </Box>
     </ImageBackground>
   </View>
-)
+);
 export default SignIn

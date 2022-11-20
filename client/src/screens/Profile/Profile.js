@@ -1,9 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {
   StyleSheet, Text, View, StatusBar,
 } from 'react-native'
-import Button from 'components/Button'
+import {Button} from 'native-base'
 import { colors } from 'theme'
 
 const styles = StyleSheet.create({
@@ -34,13 +33,4 @@ const Profile = ({ navigation }) => (
     />
   </View>
 )
-
-Profile.propTypes = {
-  navigation: PropTypes.shape({ navigate: PropTypes.func }),
-}
-
-Profile.defaultProps = {
-  navigation: { navigate: () => null },
-}
-
 export default Profile
