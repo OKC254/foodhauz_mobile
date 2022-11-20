@@ -22,17 +22,17 @@ export const DonorTabNavigator = () => (
     <Tab.Screen
       name="History"
       component={History}
-      options={{icon: "home"}}
+      options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
       name="Notifications"
       component={Notifications}
-      options={{icon: "home"}}
+      options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
       name="Profile"
       component={Profile}
-      options={{icon: "home"}}
+      options={{icon: "home", headerShown: false}}
     />
   </Tab.Navigator>
 );
