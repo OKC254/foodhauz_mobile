@@ -1,25 +1,11 @@
-/* eslint-disable react/jsx-wrap-multilines */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable no-lone-blocks */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
-// import {AiOutlineEdit} from "react-icons/ai";
 import { colors } from 'theme'
 import {
-  AntDesign,
-  Ionicons,
-  FontAwesome5,
-  MaterialIcons,
+  MaterialCommunityIcons,
 } from '@expo/vector-icons'
-import { Box, Text, Center, Actionsheet, Icon, Flex, Button, HStack, Badge, VStack, Input, FormControl, Stack, WarningOutlineIcon, TextArea, ScrollView } from 'native-base'
-import { Path } from 'react-native-svg'
+import { Box, Text, Center, Actionsheet, Icon, Flex, Button, HStack, Badge, VStack, Input, FormControl, Stack, WarningOutlineIcon, TextArea, ScrollView, IconButton } from 'native-base'
 import * as ImagePicker from 'expo-image-picker'
-import images from '../../theme/images'
-import Home from '../Home'
-// import { constants } from '../../theme'
-
 // const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width
 
@@ -56,18 +42,18 @@ const DonationPackSelect = ({navigation, isOpen, onClose}) => {
       <Center>
         <Actionsheet isOpen={isOpen} onClose={onClose} size="full">
           <Actionsheet.Content>
-              <Box w="100%" h={60} px={4} justifyContent="center">
-                <Text
-                  fontSize="16"
-                  color="gray.500"
-                  _dark={{
-                    color: "gray.300",
-                  }}
-                  bold
-                >
-                  Donation Details
-                </Text>
-              </Box>
+            <Box w="100%" h={60} px={4} justifyContent="center">
+              <Text
+                fontSize="16"
+                color="gray.500"
+                _dark={{
+                  color: "gray.300",
+                }}
+                bold
+              >
+                Donation Details
+              </Text>
+            </Box>
             <ScrollView h="100%">
               <VStack w={screenWidth} px="5" h="100%">
                 <Text pb="10px" pt={5} bold>
@@ -159,9 +145,22 @@ const DonationPackSelect = ({navigation, isOpen, onClose}) => {
                   <Text pb="5" pt="10" bold>
                     4. Add Images
                   </Text>
-                  <Button borderRadius="50px" onPress={pickImageAsync}>
-                    Add Images
-                  </Button>
+                  <HStack alignItems="center" space="5px">
+                    <IconButton
+                      size={"md"}
+                      w="40px"
+                      variant="solid"
+                      bg={colors.primary_color}
+                      _icon={{
+                        as: MaterialCommunityIcons,
+                        name: "image-plus",
+                      }}
+                      onPress={pickImageAsync}
+                      color="black"
+                    />
+                      
+                    <Text>Add Images</Text>
+                  </HStack>
                 </VStack>
                 <VStack pb="10">
                   <Text pb="5" pt="10" bold>

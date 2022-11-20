@@ -115,7 +115,7 @@ const SignUp = ({navigation}) => (
             />
           </FormControl>
           <HStack space={1} mt={2}>
-            <Checkbox />
+            <Checkbox accessibilityLabel='checkbox'/>
             <Text w="90%">
               By clicking create account I agree that i have read and accepted
               the Terms of Use and Privacy Policy
