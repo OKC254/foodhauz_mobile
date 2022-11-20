@@ -35,11 +35,17 @@ const BottomNav = ({ navigation }) => {
   }
 
   const navigateToSecondScreen = () => {
-    navigation.navigate('Orders')
+    navigation.navigate('Notifications')
   }
 
   const navigateToThirdScreen = () => {
     navigation.navigate('Profile')
+  }
+  const navigateToFourthScreen = () => {
+    navigation.navigate('History')
+  }
+  const navigateToFifthScreen = () => {
+    navigation.navigate('DonorHomePage')
   }
   return (
     <Box bg="white" width="100%" alignSelf="center">
@@ -56,7 +62,7 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 0 ? 1 : 0.5}
           py="3"
           flex={1}
-          onPress={() => setSelected(0)}
+          onPress={() => {setSelected(0); navigateToFifthScreen()}}
         >
           <Center>
             <Icon
@@ -83,7 +89,7 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 1 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => setSelected(1)}
+          onPress={() => {setSelected(1);navigateToSecondScreen()}}
         >
           <Center>
             <Icon
@@ -124,7 +130,7 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 3 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => setSelected(3)}
+          onPress={() => {setSelected(3); navigateToFourthScreen()}}
         >
           <Center>
             <Icon
@@ -147,7 +153,7 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 4 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => setSelected(4)}
+          onPress={() => {setSelected(4);navigateToThirdScreen()}}
         >
           <Center>
             <Icon

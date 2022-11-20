@@ -18,6 +18,8 @@ import DonationPackCards from "../screens/DonationPack/DonationPackCards";
 import { DonorTabNavigator } from "./Tabs/DonorTabNavigator";
 import { DonationPageNavigator } from "./Tabs/DonationPageNavigator";
 import Profile from "../screens/Profile";
+import History from "../screens/History";
+import Notifications from "../screens/Notifications";
 
 
 const Stack = createStackNavigator();
@@ -52,6 +54,8 @@ const Navigator = () => {
         <Stack.Screen name="DonationPackStart" component={DonationPageNavigator} />
         <Stack.Screen name="DonationPackCards" component={DonationPackCards} />
         <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Notifications" component={Notifications} />
+        <Stack.Screen name="History" component={History} />
       </Stack.Navigator>
     </NavigationContainer>
   ) : (

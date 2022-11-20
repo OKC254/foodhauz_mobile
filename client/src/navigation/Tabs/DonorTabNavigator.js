@@ -3,6 +3,9 @@ import Home from "../../screens/Home";
 
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import BottomNav from "../../components/BottomNav";
+import History from "../../screens/History";
+import Profile from "../../screens/Profile";
+import Notifications from "../../screens/Notifications";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,18 +20,18 @@ export const DonorTabNavigator = () => (
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
-      name="OnBoarding"
-      component={Onboarding}
+      name="History"
+      component={History}
       options={{icon: "home"}}
     />
     <Tab.Screen
-      name="History"
-      component={Onboarding}
+      name="Notifications"
+      component={Notifications}
       options={{icon: "home"}}
     />
     <Tab.Screen
       name="Profile"
-      component={Onboarding}
+      component={Profile}
       options={{icon: "home"}}
     />
   </Tab.Navigator>
