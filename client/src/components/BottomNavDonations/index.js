@@ -21,14 +21,6 @@ const BottomNavDonations = ({ navigation }) => {
   const navigateToFirstScreen = () => {
     navigation.navigate('SelectLocation')
   }
-
-  const navigateToSecondScreen = () => {
-    navigation.navigate('Orders')
-  }
-
-  const navigateToThirdScreen = () => {
-    navigation.navigate('Profile')
-  }
   return (
     <Box bg="white" safeAreaTop width="100%" alignSelf="center">
       <Center flex={1} />

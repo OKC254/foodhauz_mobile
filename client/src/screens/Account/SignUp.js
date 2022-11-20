@@ -15,6 +15,7 @@ import {
   Button,
   Checkbox,
   HStack,
+  ScrollView,
 } from 'native-base'
 import images from '../../theme/images'
 // import { constants } from '../../theme'
@@ -38,8 +39,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const SignUp = ({ navigation }) => (
-  <View style={styles.root}>
+const SignUp = ({navigation}) => (
+  <ScrollView>
     <ImageBackground
       source={images.background_img}
       resizeMode="cover"
@@ -52,7 +53,7 @@ const SignUp = ({ navigation }) => (
           size="md"
           color="#054544"
           _dark={{
-            color: 'warmGray.50',
+            color: "warmGray.50",
           }}
           fontWeight="semibold"
         >
@@ -64,33 +65,58 @@ const SignUp = ({ navigation }) => (
           size="2xl"
           mt="10px"
           source={{
-            uri: 'https://bit.ly/sage-adebayo',
+            uri: "https://bit.ly/sage-adebayo",
           }}
         />
-        <VStack space={"5px"}>
+        <VStack space={"10px"}>
           <FormControl>
             <FormControl.Label>First Name</FormControl.Label>
-            <Input placeholder="First Name" type="text" bg="#FFFFFF" />
+            <Input
+              borderRadius={"40px"}
+              placeholder="First Name"
+              type="text"
+              bg="#FFFFFF"
+            />
           </FormControl>
           <FormControl>
             <FormControl.Label>Last Name</FormControl.Label>
-            <Input bg="#FFFFFF" type="text" placeholder="Last Name" />
+            <Input
+              borderRadius={"40px"}
+              bg="#FFFFFF"
+              type="text"
+              placeholder="Last Name"
+            />
           </FormControl>
           <FormControl>
             <FormControl.Label color="#000000">Email address</FormControl.Label>
-            <Input type="email" bg="#FFFFFF" placeholder="example@gmail.com" />
+            <Input
+              borderRadius={"40px"}
+              type="email"
+              bg="#FFFFFF"
+              placeholder="example@gmail.com"
+            />
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input placeholder="............" bg="#FFFFFF" type="password" />
+            <Input
+              borderRadius={"40px"}
+              placeholder="............"
+              bg="#FFFFFF"
+              type="password"
+            />
           </FormControl>
           <FormControl>
             <FormControl.Label>Confirm Password</FormControl.Label>
-            <Input bg="#FFFFFF" placeholder="............" type="password" />
+            <Input
+              borderRadius={"40px"}
+              bg="#FFFFFF"
+              placeholder="............"
+              type="password"
+            />
           </FormControl>
           <HStack space={1} mt={2}>
             <Checkbox />
-            <Text>
+            <Text w="90%">
               By clicking create account I agree that i have read and accepted
               the Terms of Use and Privacy Policy
             </Text>
@@ -98,51 +124,42 @@ const SignUp = ({ navigation }) => (
           <Button
             borderRadius="50px"
             h="40px"
+            mt={4}
             bg={colors.primary_color}
             position="relative"
             onPress={() => {
-              navigation.navigate('ChooseAccountType')
+              navigation.navigate("ChooseAccountType");
             }}
           >
             Next
           </Button>
-          <HStack justifyContent="center">
+          <HStack justifyContent="center" mt={2}>
             <Text
               fontSize="sm"
               color="coolGray.600"
               _dark={{
-                color: 'warmGray.200',
+                color: "warmGray.200",
               }}
             >
-              Already have an account?{' '}
+              Already have an account?{" "}
             </Text>
-            <Link
+            <Button
               _text={{
-                color: 'indigo.500',
-                fontWeight: 'medium',
-                fontSize: 'sm',
+                color: "indigo.500",
+                fontWeight: "medium",
+                fontSize: "sm",
               }}
-              href="https://jesse-zhou.com/"
+              variant="ghost"
+              p="0"
+              onPress={() => navigation.navigate("SignIn")}
             >
               Log in.
-            </Link>
+            </Button>
           </HStack>
         </VStack>
       </Box>
     </ImageBackground>
-  </View>
-)
-{
-  {
-    /*
-SignUp.propTypes = {
-    navigation: PropTypes.shape({ navigate: PropTypes.func }),
-  }
+  </ScrollView>
+);
 
-  SignUp.defaultProps = {
-    navigation: { navigate: () => null },
-  }
-*/
-  }
-}
 export default SignUp

@@ -7,13 +7,13 @@ const Tab = createBottomTabNavigator();
 
 export const DonationPageNavigator = () => (
   <Tab.Navigator
-    initialRouteName="DonationPackStart"
+    initialRouteName="NewDonation"
     tabBar={(props) => <BottomNavDonations {...props} />}
   >
     <Tab.Screen
-      name="DonationPackStart"
+      name="NewDonation"
       component={DonationPackStart}
-      options={{icon: "home", headerShown:false}}
+      options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
       name="DonationPackCards"
