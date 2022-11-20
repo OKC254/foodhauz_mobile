@@ -14,6 +14,7 @@ import {
   VStack,
   Spacer,
   ChevronLeftIcon,
+  Pressable,
 } from 'native-base'
 import image from '../pizza.jpg'
 import { colors } from '../../../theme'
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const NewDonationPackCard = ({ navigation }) => (
+const NewDonationPackCard = ({navigation}) => (
   <View style={styles.root}>
     <Box backgroundColor="#FFFFFF">
       <Box
@@ -47,11 +48,17 @@ const NewDonationPackCard = ({ navigation }) => (
         bg={colors.primary_color}
         position="relative"
         onPress={() => {
-          navigation.navigate('NewDonationPack')
+          navigation.navigate("NewDonationPack");
         }}
       >
         <HStack paddingTop="20px" alignItems="center">
-          <ChevronLeftIcon paddingLeft="50px" color="white" />
+          <Pressable
+            onPress={() => {
+              navigation.navigate("Home");
+            }}
+          >
+            <ChevronLeftIcon paddingLeft="50px" color="white" />
+          </Pressable>
           <Spacer />
           <Text color="#FFFFFF" fontSize="20px" fontWeight="700">
             New Donation Pack
@@ -62,5 +69,5 @@ const NewDonationPackCard = ({ navigation }) => (
       </Box>
     </Box>
   </View>
-)
+);
 export default NewDonationPackCard
