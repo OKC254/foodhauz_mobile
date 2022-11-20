@@ -18,7 +18,7 @@ const BottomNavDonations = ({ navigation }) => {
   const [selected, setSelected] = React.useState(0)
   const {isOpen, onOpen, onClose} = useDisclose();
   const navigateToFirstScreen = () => {
-    navigation.navigate('DonationPackStart')
+    navigation.navigate('SelectLocation')
   }
 
   const navigateToSecondScreen = () => {
@@ -66,7 +66,7 @@ const BottomNavDonations = ({ navigation }) => {
             />
           </Center>
         </Pressable>
-        <Pressable py="2" flex={1} mt="-50px" onPress={onOpen}>
+        <Pressable py="2" flex={0} mt="-50px" alignSelf="center" onPress={onOpen}>
           <Center
             h="70px"
             w="70px"
@@ -80,7 +80,7 @@ const BottomNavDonations = ({ navigation }) => {
           opacity={selected === 1 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => setSelected(1)}
+          onPress={() => {setSelected(1);navigateToFirstScreen()}}
         >
           <Center>
             <Icon

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
+import { Dimensions, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
 import {
   Box,

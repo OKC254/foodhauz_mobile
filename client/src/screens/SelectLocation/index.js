@@ -90,9 +90,9 @@ const SelectLocation = ({ navigation }) => {
           >
             <Icon name="menu" />
           </TouchableOpacity>
-          {/* <View>
+          <View>
           <MapDisplay />
-        </View> */}
+        </View>
           <Box alignItems="center" h="50%" />
           <VStack
             alignItems="center"
@@ -121,13 +121,11 @@ const SelectLocation = ({ navigation }) => {
             >
               Confirm Location
             </Button>
-            {show && (
               <RequestReceivedAlert
                 show={show}
                 setShow={setShow}
                 navigation={navigation}
               />
-            )}
           </VStack>
         </View>
       </VStack>
