@@ -14,6 +14,8 @@ import {
   StatusBar,
   ThreeDotsIcon,
   VStack,
+  Input,
+  Pressable,
 } from 'native-base'
 import { SafeAreaView } from 'react-native-safe-area-context'
 // import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
@@ -41,8 +43,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   input: {
-    height: 50,
     marginTop: 10,
+    height: 50,
     width: 290,
     borderRadius: 50,
     backgroundColor: '#f3f3f3',
@@ -66,13 +68,19 @@ const SelectLocation = ({ navigation }) => {
               w={screenWidth}
               position="relative"
               onPress={() => {
-                navigation.navigate('NewDonationPack')
+                navigation.navigate("NewDonationPack");
               }}
             >
               <HStack paddingTop="20px" alignItems="center">
-                <Box ml="20px" p="10px" bg="white" rounded="md">
-                  <ChevronLeftIcon color="black" />
-                </Box>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate("DonationPackStart");
+                  }}
+                >
+                  <Box ml="20px" p="10px" bg="white" rounded="md">
+                    <ChevronLeftIcon color="black" />
+                  </Box>
+                </Pressable>
                 <Spacer />
                 <Text color="transparent" fontSize="20px" fontWeight="700">
                   .
@@ -85,14 +93,14 @@ const SelectLocation = ({ navigation }) => {
             </Box>
           </Box>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate("Home")}
             // style={tw`bg-gray-100 absolute top-16 left-8 z-50 p-3 rounded-full shadow-lg`}
           >
             <Icon name="menu" />
           </TouchableOpacity>
           <View>
-          <MapDisplay />
-        </View>
+            <MapDisplay />
+          </View>
           <Box alignItems="center" h="50%" />
           <VStack
             alignItems="center"
@@ -104,10 +112,14 @@ const SelectLocation = ({ navigation }) => {
               Select Location
             </Text>
             <Box alignItems="center">
-              <Box style={styles.input} mb="8">
-                <Text marginTop="3px" marginLeft="4px" color="gray.400">
-                  Search Location
-                </Text>
+              <Box mb="8">
+                <Input
+                  height="50"
+                  width="290"
+                  mt="5"
+                  variant="rounded"
+                  placeholder="Search Location...."
+                />
               </Box>
             </Box>
             <Button
@@ -121,16 +133,16 @@ const SelectLocation = ({ navigation }) => {
             >
               Confirm Location
             </Button>
-              <RequestReceivedAlert
-                show={show}
-                setShow={setShow}
-                navigation={navigation}
-              />
+            <RequestReceivedAlert
+              show={show}
+              setShow={setShow}
+              navigation={navigation}
+            />
           </VStack>
         </View>
       </VStack>
     </SafeAreaView>
-  )
+  );
 }
 
 export default SelectLocation

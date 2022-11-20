@@ -5,6 +5,7 @@ import {
   HStack,
   Icon,
   Pressable,
+  Text,
   useDisclose,
 } from 'native-base'
 import {
@@ -60,13 +61,18 @@ const BottomNavDonations = ({ navigation }) => {
               bg={selected === 0 ? `${colors.primary_color}` : "transparent"}
               flexDirection="row"
               alignItems="baseline"
-              h="5px"
-              w="5px"
-              borderRadius="5px"
-            />
+            >
+              <Text>Clear</Text>
+            </Box>
           </Center>
         </Pressable>
-        <Pressable py="2" flex={0} mt="-50px" alignSelf="center" onPress={onOpen}>
+        <Pressable
+          py="2"
+          flex={0}
+          mt="-50px"
+          alignSelf="center"
+          onPress={onOpen}
+        >
           <Center
             h="70px"
             w="70px"
@@ -80,7 +86,10 @@ const BottomNavDonations = ({ navigation }) => {
           opacity={selected === 1 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => {setSelected(1);navigateToFirstScreen()}}
+          onPress={() => {
+            setSelected(1);
+            navigateToFirstScreen();
+          }}
         >
           <Center>
             <Icon
@@ -93,10 +102,9 @@ const BottomNavDonations = ({ navigation }) => {
               bg={selected === 1 ? `${colors.primary_color}` : "transparent"}
               flexDirection="row"
               alignItems="baseline"
-              h="5px"
-              w="5px"
-              borderRadius="5px"
-            />
+            >
+              <Text>Done</Text>
+            </Box>
           </Center>
         </Pressable>
       </HStack>

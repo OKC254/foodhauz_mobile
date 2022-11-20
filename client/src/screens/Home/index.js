@@ -19,13 +19,13 @@ const HomeLinks = [
     link: "#",
   },
   {
-    title: "Donation Tips",
-    description: "Learn about in-need products and our donation guidelines",
+    title: "Your Food Bank",
+    description: "Learn more about your local food bank and the services they offer",
     link: "#",
   },
   {
-    title: "Donation Tips",
-    description: "Learn about in-need products and our donation guidelines",
+    title: "Community Donations",
+    description: "Get the scoop on how others in your area are donating",
     link: "#",
   },
 ];
