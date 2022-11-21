@@ -56,6 +56,7 @@ const Navigator = () => {
         <Stack.Screen name="Profile" component={Profile} />
         <Stack.Screen name="Notifications" component={Notifications} />
         <Stack.Screen name="History" component={History} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   ) : (

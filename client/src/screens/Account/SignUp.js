@@ -1,7 +1,7 @@
 /* eslint-disable no-lone-blocks */
 import React from 'react'
 // import PropTypes from 'prop-types'
-import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
+import { Dimensions, ImageBackground, StyleSheet } from 'react-native'
 import { colors } from 'theme'
 import {
   Box,
@@ -9,7 +9,6 @@ import {
   Avatar,
   Text,
   VStack,
-  Link,
   FormControl,
   Input,
   Button,
