@@ -3,7 +3,7 @@ const User = require("../../../ChatApp/ChatApp/server/models/userModel");
 const Donation = require("../models/donation.model");
 
 const createDonation = asyncHandler(async (req, res) => {
-  const {foods, location, creator} = req.body;
+  const {foods, location, creator, approved, cancelled} = req.body;
 
   if (!foods || !location || !creator) {
     res.status(400);
@@ -14,6 +14,8 @@ const createDonation = asyncHandler(async (req, res) => {
     foods,
     location,
     creator,
+    approved,
+    cancelled
   }
   try {
     var donation = await Donation.create(newDonation);
@@ -22,7 +24,9 @@ const createDonation = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: donation._id,
             foods: donation.foods,
-            creator: donation.creator
+            creator: donation.creator,
+            approved: donation.approved,
+            cancelled: donation.cancelled
         });
     }
 
@@ -36,12 +40,12 @@ const createDonation = asyncHandler(async (req, res) => {
 const allDonations = asyncHandler(async (req, res) => {
  
     try {
-    const donations = await Donation.find({},{},{lean:true}).populate(
-      "creator","name profile_pic email"
-    )
+    const donations = await Donation.find({},{},{lean:true})
+    .populate("creator", "name profile_pic email")
    
     res.status(200).json(donations);
   } catch (error) {
+
     res.status(400);
     throw new Error("Failed to get the donations");
   }
@@ -78,11 +82,11 @@ const deleteDonation = asyncHandler(async (req, res, next) => {
     const donation = await Donation.findByIdAndDelete({_id: req.params.id});
     if (donation) {
       return res.status(201).json({
-        message: "Task deleted",
+        message: "Donation deleted",
       });
     } else {
       return res.status(400).json({
-        message: "Something went wrong when deleting the task",
+        message: "Something went wrong when deleting the donation",
       });
     }
   } catch (error) {

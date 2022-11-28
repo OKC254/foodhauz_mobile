@@ -11,7 +11,7 @@ const { protect } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 router.route("/").post(createDonation).get(
-  protect,
+  // protect,
   allDonations
 );
 router.route("/:id").post(updateDonation).get(getDonation).delete(deleteDonation);
