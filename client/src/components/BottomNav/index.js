@@ -45,7 +45,7 @@ const BottomNav = ({ navigation }) => {
     navigation.navigate('History')
   }
   const navigateToFifthScreen = () => {
-    navigation.navigate('DonorHomePage')
+    navigation.navigate('DonorDashboard')
   }
   return (
     <Box bg="white" width="100%" alignSelf="center">

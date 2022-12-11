@@ -54,7 +54,7 @@ const NewDonationPackCard = ({navigation}) => (
         <HStack paddingTop="20px" alignItems="center">
           <Pressable
             onPress={() => {
-              navigation.navigate("Home");
+              navigation.navigate("DonorDashboard");
             }}
           >
             <ChevronLeftIcon paddingLeft="50px" color="white" />
