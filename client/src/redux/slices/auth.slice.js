@@ -1,35 +1,35 @@
-/* eslint-disable no-param-reassign */
-import {createSlice} from "@reduxjs/toolkit";
+// /* eslint-disable no-param-reassign */
+// import {createSlice} from "@reduxjs/toolkit";
 
-// ------------------------------------
-// Constants
-// ------------------------------------
+// // ------------------------------------
+// // Constants
+// // ------------------------------------
 
-const initialState = {
-  checked: false,
-  loggedIn: false,
-  me: {},
-};
+// const initialState = {
+//   checked: false,
+//   loggedIn: false,
+//   me: {},
+// };
 
-// ------------------------------------
-// Slice
-// ------------------------------------
+// // ------------------------------------
+// // Slice
+// // ------------------------------------
 
-const authSlice = createSlice({
-  name: "app",
-  initialState,
-  reducers: {
-    authenticate: (state, {payload}) => {
-      state.loggedIn = payload.loggedIn;
-      state.checked = payload.checked;
-    },
-    saveMe: (state, {payload}) => {
-      state.me = payload.me;
-    },
-  },
-});
+// const authSlice = createSlice({
+//   name: "app",
+//   initialState,
+//   reducers: {
+//     authenticate: (state, {payload}) => {
+//       state.loggedIn = payload.loggedIn;
+//       state.checked = payload.checked;
+//     },
+//     saveMe: (state, {payload}) => {
+//       state.me = payload.me;
+//     },
+//   },
+// });
 
-export const {action} = authSlice;
-export const {authenticate, saveMe} = authSlice.actions;
+// export const {action} = authSlice;
+// export const {authenticate, saveMe} = authSlice.actions;
 
-export default authSlice.reducer;
+// export default authSlice.reducer;
