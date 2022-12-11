@@ -59,8 +59,12 @@ const SignIn = ({ navigation }) => {
        return false;
      } else {
        // ... to save the user to state.
+       const userData = {
+         "email": email,
+         "password": password,
+       };
          auth
-           .signin({email, password})
+           .signin(userData)
            .then((response) => {
              if (response.role === "donor") {
                navigation.navigate("DonorDashboard");
