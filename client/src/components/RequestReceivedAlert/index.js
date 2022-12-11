@@ -70,7 +70,7 @@ const RequestReceivedAlert = ({show, setShow, navigation}) => {
                   position="relative"
                   onPress={() => {
                     setShow(false);
-                    navigation.navigate("Home");
+                    navigation.navigate("DonorDashboard");
                   }}
                 >
                   Ok. Back to home

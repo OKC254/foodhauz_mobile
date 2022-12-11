@@ -1,5 +1,4 @@
-import Onboarding from "../../screens/OnBoarding";
-import Home from "../../screens/Home";
+import DonorDashboard from "../../screens/Dashboards/DonorDash";
 
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import BottomNav from "../../components/BottomNav";
@@ -16,7 +15,7 @@ export const DonorTabNavigator = () => (
   >
     <Tab.Screen
       name="DonorHomePage"
-      component={Home}
+      component={DonorDashboard}
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen

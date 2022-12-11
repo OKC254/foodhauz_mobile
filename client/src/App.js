@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from "react";
 import {View} from "react-native";
-import {Provider} from "react-redux";
+// import {Provider} from "react-redux";
 import {NativeBaseProvider} from "native-base";
+import {ProvideAuth as AuthProvider} from "../src/hooks/useAuth";
 
-import store from "./redux/store";
+// import store from "./redux/store";
 import "./utils/ignore";
 
 // assets
@@ -25,12 +26,14 @@ const App = () => {
   }, []);
 
   return didLoad ? (
-    <Provider store={store}>
+    // <Provider store={store}>
+    <AuthProvider>
       <NativeBaseProvider>
         <Navigator />
       </NativeBaseProvider>
-    </Provider>
+    </AuthProvider>
   ) : (
+    // </Provider>
     <View />
   );
 };
