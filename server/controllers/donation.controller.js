@@ -38,9 +38,22 @@ const createDonation = asyncHandler(async (req, res) => {
 });
 
 // /api/user?search=janedoe
+const allUserDonations = asyncHandler(async (req, res) => {
+    try {
+    const donations = await Donation.find({creator: req.params.user_id})
+    .populate("creator", "name profile_pic email")
+   
+    res.status(200).json(donations);
+  } catch (error) {
+
+    res.status(400);
+    throw new Error("Failed to get the donations");
+  }
+});
+
 const allDonations = asyncHandler(async (req, res) => {
     try {
-    const donations = await Donation.find({creator: req.query.user_id})
+    const donations = await Donation.find({},{},{lean:true})
     .populate("creator", "name profile_pic email")
    
     res.status(200).json(donations);
@@ -127,6 +140,7 @@ const updateDonation = asyncHandler(async (req, res, next) => {
 module.exports = {
   createDonation,
   allDonations,
+  allUserDonations,
   deleteDonation,
   updateDonation,
   getDonation,
