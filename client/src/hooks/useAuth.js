@@ -49,8 +49,8 @@ function useProvideAuth() {
     };
 
   const signout = async (token) => {
-    localStorage.clear();
-    sessionStorage.clear();
+    // localStorage.clear();
+    // sessionStorage.clear();
     axios.post(
       `${BASE_API_URL}/auth/logout`,
       {},

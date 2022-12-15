@@ -60,7 +60,7 @@ const Onboarding = ({navigation}) => (
           <Text fontSize="6em" pt="30px" fontWeight="bold" textAlign="center">
             Donation Easier
           </Text>
-          <Text textAlign="center" pt="20px" fontWeight="200" color="gray.500">
+          <Text textAlign="center" pt="20px" fontWeight="400" color="gray.500">
             Get to donate your excess foodstuff and groceries to help put a
             smile on someone’s face today
           </Text>

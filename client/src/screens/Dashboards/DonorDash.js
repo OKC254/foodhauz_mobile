@@ -10,7 +10,7 @@ import { Box, Flex, Image, VStack } from 'native-base'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../theme'
 import HomeCard from '../../components/HomeCard'
-import BottomNav from '../../components/BottomNav/index'
+import { useAuth } from '../../hooks/useAuth'
 
 const HomeLinks = [
   {
@@ -59,7 +59,10 @@ const styles = StyleSheet.create({
   },
 })
 
-const DonorDash = () => (
+const DonorDash = () => {
+  const auth = useAuth()
+
+  return(
   <SafeAreaView style={styles.root}>
     <StatusBar barStyle="light-content" />
     <VStack h="100%" w="100%" bg="white">
@@ -83,12 +86,12 @@ const DonorDash = () => (
             borderBottomRightRadius="20px"
           >
             <Box>
-              <Text style={styles.title}>Hi, Catherine</Text>
+              <Text style={styles.title}>Hi, {auth.user.name}</Text>
               <Text style={styles.title_desc}>
                 What would you like to donate today?
               </Text>
             </Box>
-            <Image source={images.profile_img} alt="donation image" />
+            <Image source={auth.user.profile_pic || images.profile_img} alt="donation image" />
           </Flex>
           <Flex
             alignItems="center"
@@ -120,6 +123,6 @@ const DonorDash = () => (
       {/* <BottomNav /> */}
     </VStack>
   </SafeAreaView>
-)
+)}
 
 export default DonorDash

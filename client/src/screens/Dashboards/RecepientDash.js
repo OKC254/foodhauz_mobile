@@ -91,21 +91,6 @@ const RecepientDash = () => (
             </Box>
             <Image source={images.profile_img} alt="donation image" />
           </Flex>
-          <Flex
-            alignItems="center"
-            justifyContent="space-between"
-            flexDir="row"
-            p="30px"
-          >
-            <Image source={images.stats} alt="donation image" />
-            <Box ml="15px">
-              <Text style={styles.meals}>
-                You’ve provided <Text style={styles.meals_txt}>17 meals</Text>{" "}
-                worth of food this year
-              </Text>
-              <Text style={styles.history}>View History</Text>
-            </Box>
-          </Flex>
         </VStack>
       </VStack>
       <VStack h="600">
