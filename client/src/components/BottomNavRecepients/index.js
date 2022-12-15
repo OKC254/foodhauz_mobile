@@ -33,7 +33,7 @@ const BottomNavRecepient = ({navigation}) => {
     navigation.navigate("Profile");
   };
   const navigateToFourthScreen = () => {
-    navigation.navigate("History");
+    navigation.navigate("RecepientHistory");
   };
   const navigateToFifthScreen = () => {
     navigation.navigate("RecepientHomePage");

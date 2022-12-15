@@ -11,10 +11,11 @@ import DonationPackCards from "../screens/DonationPack/DonationPackCards";
 import { DonorTabNavigator } from "./Tabs/DonorTabNavigator";
 import { DonationPageNavigator } from "./Tabs/DonationPageNavigator";
 import Profile from "../screens/Profile";
-import History from "../screens/History";
 import Notifications from "../screens/Notifications";
 import { useAuth } from "../hooks/useAuth";
 import { RecepientTabNavigator } from "./Tabs/RecepientTabNavigator";
+import DonorHistory from "../screens/History/DonorHistory";
+import RecepientHistory from "../screens/History/RecepientHistory";
 
 
 const Stack = createStackNavigator();
@@ -82,8 +83,13 @@ const Navigator = () => {
                 options={{headerShown: false}}
               />
               <Stack.Screen
-                name="History"
-                component={History}
+                name="RecepientHistory"
+                component={RecepientHistory}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="DonorHistory"
+                component={DonorHistory}
                 options={{headerShown: false}}
               />
             </Stack.Group>

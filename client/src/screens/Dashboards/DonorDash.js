@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const DonorDash = () => {
+const DonorDash = ({navigation}) => {
   const auth = useAuth()
 
   return(
@@ -105,7 +105,7 @@ const DonorDash = () => {
                 You’ve provided <Text style={styles.meals_txt}>17 meals</Text>{' '}
                 worth of food this year
               </Text>
-              <Text style={styles.history}>View History</Text>
+              <Text style={styles.history} onPress={()=> navigation.navigate("DonorHistory")}>View History</Text>
             </Box>
           </Flex>
         </VStack>

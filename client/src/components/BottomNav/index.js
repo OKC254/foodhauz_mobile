@@ -42,7 +42,7 @@ const BottomNav = ({ navigation }) => {
     navigation.navigate('Profile')
   }
   const navigateToFourthScreen = () => {
-    navigation.navigate('History')
+    navigation.navigate('DonorHistory')
   }
   const navigateToFifthScreen = () => {
     navigation.navigate('DonorHomePage')

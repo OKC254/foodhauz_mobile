@@ -1,10 +1,10 @@
 import RecepientDashboard from "../../screens/Dashboards/RecepientDash";
 
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import History from "../../screens/History";
 import Profile from "../../screens/Profile";
 import Notifications from "../../screens/Notifications";
 import BottomNavRecepient from "../../components/BottomNavRecepients";
+import RecepientHistory from "../../screens/History/RecepientHistory";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,8 +19,8 @@ export const RecepientTabNavigator = () => (
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
-      name="History"
-      component={History}
+      name="RecepientHistory"
+      component={RecepientHistory}
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
