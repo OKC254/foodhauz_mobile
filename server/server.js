@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require("cors");
 const connectToDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const donationRoutes = require("./routes/donation.routes");
 const {notFound, errorHandler} = require("./middlewares/errorMiddleware");
 
 // configure required packages
@@ -22,6 +23,7 @@ app.get("/", (req, res) => {
 // routes
 app.use(cors());
 app.use("/api/users", userRoutes);
+app.use("/api/donations", donationRoutes);
 
 // middlewares
 app.use(notFound);

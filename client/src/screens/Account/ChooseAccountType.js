@@ -1,6 +1,4 @@
-/* eslint-disable indent */
-/* eslint-disable no-nested-ternary */
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
@@ -20,9 +18,11 @@ import {
   Badge,
   Pressable,
   Radio,
+  useToast
 } from 'native-base'
+import {useAuth} from "../../hooks/useAuth"
 import images from '../../theme/images'
-// import { constants } from '../../theme'
+
 
 // const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width
@@ -42,8 +42,53 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const ChooseAccountType = ({ navigation }) => {
-  const [value, setValue] = React.useState('one')
+const ChooseAccountType = ({ route, navigation }) => {
+  const [role, setRole] = React.useState('donor')
+  const [error, setError] = React.useState('')
+  const auth = useAuth()
+
+  const {data: {name, email, password, confirmpassword, image}} = route.params
+  const toast = useToast()
+
+  const userData = {
+      "name": name,
+      "email": email,
+      "password": password,
+      "profile_pic": image,
+      "role": role
+    }
+  // ... to save the user to state.
+  const onSubmit = async () => {
+    auth.signup(userData).then((response) => {
+      if (response.role === "donor") {
+        navigation.navigate("DonorDashboard")
+      }else if (response.role === "recepient") {
+        navigation.navigate("RecepientDashboard")
+      } else {
+        setError("not yet authenticated")
+      }
+      })
+    .catch((err) => {
+      setError(err.message)
+      console.log("upload " + err.message)
+    })
+  };
+
+
+
+  useEffect(() => {
+    if (error) {
+      showMessage(error);
+    }
+  }, [error]);
+
+  const showMessage = (errMessage) => {
+    toastRef.current = toast.show({
+      title: errMessage,
+      placement: "top",
+    });
+  };
+ 
   return (
     <View style={styles.root}>
       <ImageBackground
@@ -80,7 +125,7 @@ const ChooseAccountType = ({ navigation }) => {
           </Radio.Group> */}
           ;
           <Box alignItems="center">
-            <Pressable maxW="96">
+            <Pressable maxW="96" onPress={()=>setRole("donor")}>
               {({ isHovered, isFocused, isPressed }) => (
                 <Box
                   bg={
@@ -131,7 +176,7 @@ const ChooseAccountType = ({ navigation }) => {
             </Pressable>
           </Box>
           <Box alignItems="center" mt="20px">
-            <Pressable maxW="96">
+            <Pressable maxW="96" onPress={() => setRole("recepient")}>
               {({ isHovered, isFocused, isPressed }) => (
                 <Box
                   bg={
@@ -187,9 +232,7 @@ const ChooseAccountType = ({ navigation }) => {
             h="40px"
             bg={colors.primary_color}
             position="relative"
-            onPress={() => {
-              navigation.navigate('Home')
-            }}
+            onPress={onSubmit}
           >
             Create Account
           </Button>

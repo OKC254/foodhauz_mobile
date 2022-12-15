@@ -4,14 +4,14 @@ import React, { useEffect, useRef } from 'react'
 import { View, Text } from 'react-native'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 
-import { useDispatch, useSelector } from 'react-redux'
+// import { useDispatch, useSelector } from 'react-redux'
 import MapViewDirections from 'react-native-maps-directions'
 import { GOOGLE_MAPS_APIKEY } from '@env'
-import {
-  selectDestination,
-  selectOrigin,
-  setTravelTimeInfo,
-} from '../../redux/slices/nav.slice'
+// import {
+//   selectDestination,
+//   selectOrigin,
+//   setTravelTimeInfo,
+// } from '../../redux/slices/nav.slice'
 
 const MapDisplay = () => {
   // const origin = useSelector(selectOrigin)

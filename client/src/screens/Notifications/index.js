@@ -18,13 +18,13 @@ const Notifications = ({navigation}) => {
           bg={colors.primary_color}
           position="relative"
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("DonorDashboard");
           }}
         >
           <HStack paddingTop="20px" alignItems="center">
             <Pressable
               onPress={() => {
-                navigation.navigate("Home");
+                navigation.navigate("DonorDashboard");
               }}
             >
               <ChevronLeftIcon paddingLeft="50px" color="white" />

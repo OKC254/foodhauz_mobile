@@ -93,7 +93,7 @@ const SelectLocation = ({ navigation }) => {
             </Box>
           </Box>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Home")}
+            onPress={() => navigation.navigate("DonorDashboard")}
             // style={tw`bg-gray-100 absolute top-16 left-8 z-50 p-3 rounded-full shadow-lg`}
           >
             <Icon name="menu" />
