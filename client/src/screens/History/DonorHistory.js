@@ -49,7 +49,7 @@ const DonorHistory = ({navigation}) => {
       </Box>
       <ScrollView p={"30px"}>
         <Text>Today</Text>
-        <DonationItem />
+        {/* <DonationItem navigation={navigation} donation={donation}/> */}
       </ScrollView>
     </View>
   );

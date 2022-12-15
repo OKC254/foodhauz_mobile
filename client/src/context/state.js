@@ -1,5 +1,5 @@
 import {cloneElement} from "react";
-import { DonationPackProvider, DonationsProvider} from ".";
+import { DonationPackProvider, DonationsProvider, RequestsProvider} from ".";
 import { ProvideAuth } from "../hooks/useAuth";
 
 function ProviderComposer({contexts, children}) {
@@ -15,7 +15,7 @@ function ProviderComposer({contexts, children}) {
 const AppContextProvider = ({children}) => {
   return (
     <ProviderComposer
-      contexts={[<ProvideAuth />, <DonationPackProvider/>, <DonationsProvider/>]}
+      contexts={[<ProvideAuth />, <DonationPackProvider/>, <DonationsProvider/>, <RequestsProvider/>]}
       value=""
     >
       {children}

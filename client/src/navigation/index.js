@@ -16,6 +16,7 @@ import { useAuth } from "../hooks/useAuth";
 import { RecepientTabNavigator } from "./Tabs/RecepientTabNavigator";
 import DonorHistory from "../screens/History/DonorHistory";
 import RecepientHistory from "../screens/History/RecepientHistory";
+import DonationDetails from "../screens/DonationDetails";
 
 
 const Stack = createStackNavigator();
@@ -90,6 +91,11 @@ const Navigator = () => {
               <Stack.Screen
                 name="DonorHistory"
                 component={DonorHistory}
+                options={{headerShown: false}}
+              />
+              <Stack.Screen
+                name="DonationDetails"
+                component={DonationDetails}
                 options={{headerShown: false}}
               />
             </Stack.Group>

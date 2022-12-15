@@ -8,7 +8,7 @@ import HomeCard from "../../components/HomeCard";
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import { DonationsState } from "../../context";
-import GeneralLoading from "../../components/GeneralLoading";
+import { SkeletonLoader } from "../../components/GeneralLoading";
 import { BASE_API_URL } from "../../utils/api";
 
 const HomeLinks = [
@@ -77,7 +77,7 @@ const RecepientDash = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${BASE_API_URL}/donations?user_id=${auth.user._id}`,
+        `${BASE_API_URL}/donations`,
         config
       );
       if (response.data) {
@@ -150,18 +150,21 @@ const RecepientDash = () => {
       <VStack h="600" px={30} pt={5}>
         <Text>Recent Donations</Text>
         {
-          loading?<GeneralLoading/>: (
+          loading ? <SkeletonLoader/> : (
             <Box>
               {
-                donations?.length > 0 ? (<Box>
-                  {
-                    donations?.map((donation) => {
-                      return(
-                        <Text>{donation._id}</Text>
-                      )
-                    })
-                  }
-                </Box>):<Text>No donations yet</Text>
+                donations?.length > 0 ? (
+                  <Box>
+                    {
+                      donations?.map((donation) => {
+                        return(
+                          <Text>{donation._id}</Text>
+                        )
+                      })
+                    }
+                </Box>
+                ):
+                <Text>No donations yet</Text>
               }
             </Box>
           )

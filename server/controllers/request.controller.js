@@ -74,7 +74,10 @@ const getDonationRequest = asyncHandler(async (req, res, next) => {
     return res.sendStatus(400);
   }
   try {
-    var donation = await Request.findOne({_id: req.params.id});
+    var donation = await Request.findOne({_id: req.params.id})
+      .populate("requestor", "name email profile_pic")
+      .populate("donation",
+      "location foods");
 
     if (donation) {
       res.status(200).json(donation);
