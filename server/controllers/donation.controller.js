@@ -1,9 +1,8 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../../../ChatApp/ChatApp/server/models/userModel");
 const Donation = require("../models/donation.model");
 
 const createDonation = asyncHandler(async (req, res) => {
-  const {foods, location, creator, approved, cancelled} = req.body;
+  const {foods, location, creator, approved, cancelled, requested} = req.body;
 
   if (!foods || !location || !creator) {
     res.status(400);
@@ -15,7 +14,8 @@ const createDonation = asyncHandler(async (req, res) => {
     location,
     creator,
     approved,
-    cancelled
+    cancelled,
+    requested,
   }
   try {
     var donation = await Donation.create(newDonation);
@@ -26,7 +26,8 @@ const createDonation = asyncHandler(async (req, res) => {
             foods: donation.foods,
             creator: donation.creator,
             approved: donation.approved,
-            cancelled: donation.cancelled
+            cancelled: donation.cancelled,
+            requested: donation.requested
         });
     }
 
@@ -37,8 +38,20 @@ const createDonation = asyncHandler(async (req, res) => {
 });
 
 // /api/user?search=janedoe
+const allUserDonations = asyncHandler(async (req, res) => {
+    try {
+    const donations = await Donation.find({creator: req.params.user_id})
+    .populate("creator", "name profile_pic email")
+   
+    res.status(200).json(donations);
+  } catch (error) {
+
+    res.status(400);
+    throw new Error("Failed to get the donations");
+  }
+});
+
 const allDonations = asyncHandler(async (req, res) => {
- 
     try {
     const donations = await Donation.find({},{},{lean:true})
     .populate("creator", "name profile_pic email")
@@ -127,6 +140,7 @@ const updateDonation = asyncHandler(async (req, res, next) => {
 module.exports = {
   createDonation,
   allDonations,
+  allUserDonations,
   deleteDonation,
   updateDonation,
   getDonation,

@@ -2,7 +2,8 @@ import React, {useState, useEffect} from "react";
 import {View} from "react-native";
 // import {Provider} from "react-redux";
 import {NativeBaseProvider} from "native-base";
-import {ProvideAuth as AuthProvider} from "../src/hooks/useAuth";
+// import {ProvideAuth as AuthProvider} from "../src/hooks/useAuth";
+import AppContextProvider from "./context/state";
 
 // import store from "./redux/store";
 import "./utils/ignore";
@@ -27,11 +28,11 @@ const App = () => {
 
   return didLoad ? (
     // <Provider store={store}>
-    <AuthProvider>
+    <AppContextProvider>
       <NativeBaseProvider>
         <Navigator />
       </NativeBaseProvider>
-    </AuthProvider>
+    </AppContextProvider>
   ) : (
     // </Provider>
     <View />

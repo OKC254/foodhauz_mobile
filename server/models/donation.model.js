@@ -30,6 +30,7 @@ const donationSchema = mongoose.Schema(
     creator: [{ref: "User", type: mongoose.Schema.Types.ObjectId}],
     approved: {type: Boolean, required: true, default: false},
     cancelled: {type: Boolean, required: true, default: false},
+    requested: {type: Boolean, required: true, default: false},
   },
   {
     timestamps: true,
