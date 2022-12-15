@@ -69,7 +69,7 @@ const Onboarding = ({navigation}) => (
             h="50px"
             bg={colors.primary_color}
             onPress={() => {
-              navigation.navigate("SignUp");
+              navigation.navigate("Profile");
             }}
             position="relative"
             bottom="-70px"

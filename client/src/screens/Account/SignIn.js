@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
+import validator from "validator";
 import {
   Box,
   Heading,
@@ -11,13 +12,11 @@ import {
   Input,
   Button,
   HStack,
-  Divider,
-  useToast
+  useToast,
 } from 'native-base'
 import images from '../../theme/images'
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
 import { useAuth } from '../../hooks/useAuth'
-import validator from "validator"
 
 // const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width
