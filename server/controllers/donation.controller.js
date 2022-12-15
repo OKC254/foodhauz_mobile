@@ -1,5 +1,5 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../../../ChatApp/ChatApp/server/models/userModel");
+const User = require("../models/user.model");
 const Donation = require("../models/donation.model");
 
 const createDonation = asyncHandler(async (req, res) => {
