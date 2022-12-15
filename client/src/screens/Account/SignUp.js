@@ -1,7 +1,6 @@
 import React, {useState, useRef, useEffect} from 'react'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
-import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Heading,
@@ -16,7 +15,6 @@ import {
   HStack,
   ScrollView,
   Icon as NIcon,
-  useToast,
   IconButton,
 } from 'native-base'
 import images from '../../theme/images'

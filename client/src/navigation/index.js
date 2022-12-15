@@ -14,6 +14,8 @@ import Profile from "../screens/Profile";
 import History from "../screens/History";
 import Notifications from "../screens/Notifications";
 import { useAuth } from "../hooks/useAuth";
+import DonationHistoryCards from "../screens/DonationHistory/ViewDonationsHistory/DonationHistoryCards";
+import TopDonationCards from "../screens/DonationHistory/TopDonationsHistory/TopDonationCards";
 
 
 const Stack = createStackNavigator();
@@ -34,6 +36,12 @@ const Navigator = () => {
         <Tab.Screen name="Onboarding" component={Onboarding} />
         <Tab.Screen name="SignUp" component={SignUp} />
         <Tab.Screen name="SignIn" component={SignIn} />
+
+    
+        <Tab.Screen name="TopDonationCards" component={TopDonationCards} />
+        <Tab.Screen name="DonationHistoryCards" component={DonationHistoryCards} />
+        
+        
         <Tab.Screen name="ChooseAccountType" component={ChooseAccountType} />
       </Tab.Navigator>
     );
