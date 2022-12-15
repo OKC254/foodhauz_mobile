@@ -14,6 +14,7 @@ import Profile from "../screens/Profile";
 import History from "../screens/History";
 import Notifications from "../screens/Notifications";
 import { useAuth } from "../hooks/useAuth";
+import { RecepientTabNavigator } from "./Tabs/RecepientTabNavigator";
 
 
 const Stack = createStackNavigator();
@@ -51,7 +52,7 @@ const Navigator = () => {
               />
               <Stack.Screen
                 name="RecepientDashboard"
-                component={DonorTabNavigator}
+                component={RecepientTabNavigator}
                 options={{headerShown: false}}
               />
 

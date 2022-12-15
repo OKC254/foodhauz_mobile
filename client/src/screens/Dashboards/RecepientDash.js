@@ -1,16 +1,15 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable object-curly-newline */
-import React from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import {StyleSheet, StatusBar, Text} from "react-native";
-// import Button from 'components/Button'
 import {colors} from "theme";
 import {Box, Flex, Image, VStack} from "native-base";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {images} from "../../theme";
 import HomeCard from "../../components/HomeCard";
-import BottomNav from "../../components/BottomNav/index";
+import { useAuth } from "../../hooks/useAuth";
+import axios from "axios";
+import { DonationsState } from "../../context";
+import GeneralLoading from "../../components/GeneralLoading";
+import { BASE_API_URL } from "../../utils/api";
 
 const HomeLinks = [
   {
@@ -60,7 +59,63 @@ const styles = StyleSheet.create({
   },
 });
 
-const RecepientDash = () => (
+const RecepientDash = () => {
+  const auth = useAuth();
+  const {donations, setDonations} = DonationsState()
+  const [loading, setLoading]=useState(false)
+
+  const fetchDonations = async () => {
+    const token = auth.token? auth.token : null;
+
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        `${BASE_API_URL}/donations?user_id=${auth.user._id}`,
+        config
+      );
+      if (response.data) {
+        setLoading(false);
+
+        // Success 🎉
+        console.log("response", response);
+        setDonations(response.data);
+      }
+    } catch (error) {
+      // Error 😨
+      if (error.response) {
+        /*
+         * The request was made and the server responded with a
+         * status code that falls out of the range of 2xx
+         */
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        /*
+         * The request was made but no response was received, `error.request`
+         * is an instance of XMLHttpRequest in the browser and an instance
+         * of http.ClientRequest in Node.js
+         */
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request and triggered an Error
+        console.log("Error", error.message);
+      }
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDonations();
+  }, []);
+  return(
   <SafeAreaView style={styles.root}>
     <StatusBar barStyle="light-content" />
     <VStack h="100%" w="100%" bg="white">
@@ -68,7 +123,7 @@ const RecepientDash = () => (
         <VStack
           bg={colors.background_color}
           w="100%"
-          h="260"
+          h="130"
           borderBottomLeftRadius="20px"
           borderBottomRightRadius="20px"
           alignSelf="baseline"
@@ -92,14 +147,29 @@ const RecepientDash = () => (
             <Image source={images.profile_img} alt="donation image" />
           </Flex>
         </VStack>
+      <VStack h="600" px={30} pt={5}>
+        <Text>Recent Donations</Text>
+        {
+          loading?<GeneralLoading/>: (
+            <Box>
+              {
+                donations?.length > 0 ? (<Box>
+                  {
+                    donations?.map((donation) => {
+                      return(
+                        <Text>{donation._id}</Text>
+                      )
+                    })
+                  }
+                </Box>):<Text>No donations yet</Text>
+              }
+            </Box>
+          )
+        }
       </VStack>
-      <VStack h="600">
-        <Text>This is the recepient's dashboard</Text>
       </VStack>
-      <Text>hello</Text>
-      {/* <BottomNav /> */}
     </VStack>
   </SafeAreaView>
-);
+)}
 
 export default RecepientDash;
