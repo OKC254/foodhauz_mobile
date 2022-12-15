@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
+import { useState, useEffect, useRef } from "react";
+import validator from "validator";
 import {
   Box,
   Heading,
@@ -12,6 +14,7 @@ import {
   Input,
   Button,
   HStack,
+  useToast,
   Divider,
 } from 'native-base'
 import DonationPackStart from '../DonationPack/DonationPackStart'
@@ -37,7 +40,62 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const SignIn = ({navigation}) => (
+const SignIn = ({navigation}) =>{
+//const navigation = useNavigation();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showHidePass, setShowHidePass] = useState(true);
+    const [error, setError] = useState(null)
+    const toast = useToast();
+    const toastRef = useRef();
+
+    const viewPass = () => setShowHidePass(!showHidePass);
+
+    useEffect(() => {
+        if (error) {
+            showMessage(error)
+        }
+    }, [error]);
+
+    const showMessage = errMsg => {
+        toastRef.current = toast.show({
+            title: errMsg,
+            placement: "top",
+        });
+    }
+
+    const clickSubmit = () => {
+        const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        if (validator.isEmpty(email)) {
+            setError("Email is empty");
+            return false;
+        }
+        else if (!emailRegex.test(email.trim())) {
+            setError("Email address is invalid");
+            return false
+        }
+        else if (validator.isEmpty(password)) {
+            setError("Password is empty")
+            return false
+        } else if (password.length < 6) {
+            setError("Password must be atleast 6 characters");
+            return false
+        } else {
+            signInWithEmailAndPassword(auth, email, password)
+                .then(async (userCredential) => {
+                    // navigation.push("Home");
+                    console.log("Login success")
+                })
+                .catch((err) => {
+                    const errorCode = err.code;
+                    const errorMessage = err.message;
+                    console.log(
+                        "Error in sign in message " + errorMessage + "error code " + errorCode
+                    );
+                });
+        }
+    };
+return(
   <View style={styles.root}>
     <ImageBackground
       source={images.background_img}
@@ -75,6 +133,7 @@ const SignIn = ({navigation}) => (
               placeholder="example@gmail.com"
               type="text"
               bg="#FFFFFF"
+              onChangeText={(val) => setEmail(val)}
             />
           </FormControl>
           <FormControl>
@@ -84,6 +143,7 @@ const SignIn = ({navigation}) => (
               placeholder="............"
               bg="#FFFFFF"
               type="password"
+              onChangeText={(val) => setPassword(val)}
             />
           </FormControl>
           <Link
@@ -107,11 +167,7 @@ const SignIn = ({navigation}) => (
             h="40px"
             bg={colors.primary_color}
             position="relative"
-            onPress={() => {
-              navigation.navigate("DonationPackStart");
-
-              navigation.navigate("Home");
-            }}
+            onPress={clickSubmit}
           >
             Sign In
           </Button>
@@ -140,4 +196,5 @@ const SignIn = ({navigation}) => (
     </ImageBackground>
   </View>
 );
+            }
 export default SignIn

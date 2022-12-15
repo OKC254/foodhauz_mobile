@@ -3,9 +3,11 @@ import React from 'react'
 // import PropTypes from 'prop-types'
 import { Dimensions, ImageBackground, StyleSheet } from 'react-native'
 import { colors } from 'theme'
+import { useState, useEffect, useRef } from "react";
 import {
   Box,
   Heading,
+  useToast,
   Avatar,
   Text,
   VStack,
@@ -38,7 +40,66 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const SignUp = ({navigation}) => (
+const SignUp = ({navigation}) => {
+    //const navigation = useNavigation();
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [resetpassword, setResetPassword] = useState("");
+    const [showHidePass, setShowHidePass] = useState(true);
+    const [error, setError] = useState(null)
+    const toast = useToast();
+    const toastRef = useRef();
+
+    const viewPass = () => setShowHidePass(!showHidePass);
+
+    useEffect(() => {
+        if (error) {
+            showMessage(error)
+        }
+    }, [error]);
+
+    const showMessage = errMsg => {
+        toastRef.current = toast.show({
+            title: errMsg,
+            placement: "top",
+        });
+    }
+
+    const clickSubmit = () => {
+        const emailRegex = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
+        if (validator.isEmpty(email)) {
+            setError("Email is empty");
+            return false;
+        }
+        else if (!emailRegex.test(email.trim())) {
+            setError("Email address is invalid");
+            return false
+        }
+        else if (validator.isEmpty(password)) {
+            setError("Password is empty")
+            return false
+        } else if (password.length < 6) {
+            setError("Password must be atleast 6 characters");
+            return false
+        } else {
+            signInWithEmailAndPassword(auth, name, email, password)
+                .then(async (userCredential) => {
+                    // navigation.push("Home");
+                    console.log("Login success")
+                })
+                .catch((err) => {
+                    const errorCode = err.code;
+                    const errorMessage = err.message;
+                    console.log(
+                        "Error in sign in message " + errorMessage + "error code " + errorCode
+                    );
+                });
+        }
+    };
+
+
+  return (
   <ScrollView>
     <ImageBackground
       source={images.background_img}
@@ -69,15 +130,16 @@ const SignUp = ({navigation}) => (
         />
         <VStack space={"10px"}>
           <FormControl>
-            <FormControl.Label>First Name</FormControl.Label>
+            <FormControl.Label>UserName</FormControl.Label>
             <Input
               borderRadius={"40px"}
               placeholder="First Name"
               type="text"
               bg="#FFFFFF"
+              onChangeText={(val) => setName(val)}
             />
           </FormControl>
-          <FormControl>
+          {/*<FormControl>
             <FormControl.Label>Last Name</FormControl.Label>
             <Input
               borderRadius={"40px"}
@@ -85,7 +147,7 @@ const SignUp = ({navigation}) => (
               type="text"
               placeholder="Last Name"
             />
-          </FormControl>
+          </FormControl>*/}
           <FormControl>
             <FormControl.Label color="#000000">Email address</FormControl.Label>
             <Input
@@ -93,6 +155,7 @@ const SignUp = ({navigation}) => (
               type="email"
               bg="#FFFFFF"
               placeholder="example@gmail.com"
+              onChangeText={val => setEmail(val)}
             />
           </FormControl>
           <FormControl>
@@ -102,6 +165,7 @@ const SignUp = ({navigation}) => (
               placeholder="............"
               bg="#FFFFFF"
               type="password"
+              onChangeText={(val) => setPassword(val)}
             />
           </FormControl>
           <FormControl>
@@ -110,6 +174,7 @@ const SignUp = ({navigation}) => (
               borderRadius={"40px"}
               bg="#FFFFFF"
               placeholder="............"
+              onChangeText={(val) => setResetPassword(val)}
               type="password"
             />
           </FormControl>
@@ -160,5 +225,5 @@ const SignUp = ({navigation}) => (
     </ImageBackground>
   </ScrollView>
 );
-
+}
 export default SignUp

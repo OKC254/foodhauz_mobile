@@ -79,7 +79,6 @@ const Profile = ({ navigation }) => (
           Profile{" "}
         </Heading>
       </HStack>
-
       <VStack paddingBottom={2}>
         <Avatar
           alignSelf="center"
