@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../models/user.model");
 const Donation = require("../models/donation.model");
 
 const createDonation = asyncHandler(async (req, res) => {
@@ -40,9 +39,8 @@ const createDonation = asyncHandler(async (req, res) => {
 
 // /api/user?search=janedoe
 const allDonations = asyncHandler(async (req, res) => {
- 
     try {
-    const donations = await Donation.find({},{},{lean:true})
+    const donations = await Donation.find({creator: req.query.user_id})
     .populate("creator", "name profile_pic email")
    
     res.status(200).json(donations);

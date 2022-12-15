@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const Donation = require("../models/donation.model");
 const Request = require("../models/request.model");
 
 const createDonationRequest = asyncHandler(async (req, res) => {
@@ -50,12 +51,15 @@ const createDonationRequest = asyncHandler(async (req, res) => {
 // /api/user?search=janedoe
 const allDonationRequests = asyncHandler(async (req, res) => {
   try {
-    const requests = await Request.find({}, {}, {lean: true}).populate(
-      "requestor",
-      "name profile_pic email"
-    );
-
-    res.status(200).json(requests);
+    await Request.find({requestor: req.query.user_id}).populate("requestor", "name profile_pic email").then(async (results) => {
+        results = await Donation.populate(results, {
+          path: "donation",
+          select: "location foods",
+        })
+        
+        console.log(results);
+        res.status(200).json(results);
+      })
   } catch (error) {
     res.status(400);
     throw new Error("Failed to get the donation requests");
