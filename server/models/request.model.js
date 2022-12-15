@@ -7,6 +7,8 @@ const requestSchema = mongoose.Schema(
     accepted: {type: Boolean, required: true, default: false},
     delivered: {type: Boolean, required: true, default: false},
     cancelled: {type: Boolean, required: true, default: false},
+    requested_date: {type: Date, required: true, default: false},
+    delivered_date: {type: Date, required: true, default: false},
   },
   {
     timestamps: true,

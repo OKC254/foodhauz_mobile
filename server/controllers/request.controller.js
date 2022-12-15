@@ -1,76 +1,88 @@
 const asyncHandler = require("express-async-handler");
-const User = require("../models/user.model");
-const Donation = require("../models/donation.model");
+const Request = require("../models/request.model");
 
-const createRequest = asyncHandler(async (req, res) => {
-  const {donation, requestor, accepted, cancelled} = req.body;
+const createDonationRequest = asyncHandler(async (req, res) => {
+  const {
+    donation,
+    requestor,
+    accepted,
+    delivered,
+    cancelled,
+    requested_date,
+    delivered_date,
+  } = req.body;
 
-  if (!foods || !location || !requestor) {
+  if (!donation || !requested_date || !requestor) {
     res.status(400);
     throw new Error("Please fill all fields");
   }
 
-  const newDonation = {
-    foods,
-    location,
-    creator,
-    approved,
+  const newRequest = {
+    donation,
+    requestor,
+    accepted,
+    delivered,
     cancelled,
+    requested_date,
+    delivered_date,
   };
   try {
-    var request = await Donation.create(newDonation);
-    donation = await donation.populate("creator", "name email profile_pic");
+    var request = await Request.create(newRequest);
+    request = await request.populate("requestor", "name email profile_pic");
     if (donation) {
       res.status(201).json({
-        _id: donation._id,
-        foods: donation.foods,
-        creator: donation.creator,
-        approved: donation.approved,
-        cancelled: donation.cancelled,
+        _id: request._id,
+        donation: request.donation,
+        requestor: request.requestor,
+        accepted: request.accepted,
+        delivered: request.delivered,
+        cancelled: request.cancelled,
+        requested_date: request.requested_date,
+        delivered_date: request.delivered_date,
       });
     }
   } catch (error) {
     res.status(400);
-    throw new Error("Failed to create the donation");
+    throw new Error("Failed to create the donation request");
   }
 });
 
 // /api/user?search=janedoe
-const allDonations = asyncHandler(async (req, res) => {
+const allDonationRequests = asyncHandler(async (req, res) => {
   try {
-    const donations = await Donation.find({}, {}, {lean: true}).populate(
-      "creator",
+    const requests = await Request.find({}, {}, {lean: true}).populate(
+      "requestor",
       "name profile_pic email"
     );
 
-    res.status(200).json(donations);
+    res.status(200).json(requests);
   } catch (error) {
     res.status(400);
-    throw new Error("Failed to get the donations");
+    throw new Error("Failed to get the donation requests");
   }
 });
 
-const getDonation = asyncHandler(async (req, res, next) => {
+const getDonationRequest = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
 
   if (!id) {
-    console.log("donation id parameter not sent with request");
+    console.log("donation request id parameter not sent with request");
     return res.sendStatus(400);
   }
   try {
-    var donation = await Donation.findOne({_id: req.params.id});
+    var donation = await Request.findOne({_id: req.params.id});
 
     if (donation) {
       res.status(200).json(donation);
     } else {
-      return res.status(404).send("cannot find donation with that id");
+      return res.status(404).send("cannot find donation request with that id");
     }
   } catch (error) {
-    return res.status(500).send("cannot find donation with that id");
+    return res.status(500).send("cannot find donation request with that id");
   }
 });
 
-const deleteDonation = asyncHandler(async (req, res, next) => {
+const deleteDonationRequest = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
 
   if (!id) {
@@ -78,7 +90,7 @@ const deleteDonation = asyncHandler(async (req, res, next) => {
     return res.sendStatus(400);
   }
   try {
-    const donation = await Donation.findByIdAndDelete({_id: req.params.id});
+    const donation = await Request.findByIdAndDelete({_id: req.params.id});
     if (donation) {
       return res.status(201).json({
         message: "Donation deleted",
@@ -94,11 +106,11 @@ const deleteDonation = asyncHandler(async (req, res, next) => {
   }
 });
 
-const updateDonation = asyncHandler(async (req, res, next) => {
+const updateDonationRequest = asyncHandler(async (req, res, next) => {
   try {
-    const donation = await Donation.findById({_id: req.params.id});
+    const donation = await Request.findById({_id: req.params.id});
     if (donation) {
-      const willBeUpdated = await Donation.findByIdAndUpdate(
+      const willBeUpdated = await Request.findByIdAndUpdate(
         {_id: req.params.id},
         req.body,
         {lean: true, new: true}
@@ -124,9 +136,9 @@ const updateDonation = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = {
-  createDonation,
-  allDonations,
-  deleteDonation,
-  updateDonation,
-  getDonation,
+  createDonationRequest,
+  allDonationRequests,
+  deleteDonationRequest,
+  updateDonationRequest,
+  getDonationRequest,
 };

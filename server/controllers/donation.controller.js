@@ -3,7 +3,7 @@ const User = require("../models/user.model");
 const Donation = require("../models/donation.model");
 
 const createDonation = asyncHandler(async (req, res) => {
-  const {foods, location, creator, approved, cancelled} = req.body;
+  const {foods, location, creator, approved, cancelled, requested} = req.body;
 
   if (!foods || !location || !creator) {
     res.status(400);
@@ -15,7 +15,8 @@ const createDonation = asyncHandler(async (req, res) => {
     location,
     creator,
     approved,
-    cancelled
+    cancelled,
+    requested,
   }
   try {
     var donation = await Donation.create(newDonation);
@@ -26,7 +27,8 @@ const createDonation = asyncHandler(async (req, res) => {
             foods: donation.foods,
             creator: donation.creator,
             approved: donation.approved,
-            cancelled: donation.cancelled
+            cancelled: donation.cancelled,
+            requested: donation.requested
         });
     }
 
