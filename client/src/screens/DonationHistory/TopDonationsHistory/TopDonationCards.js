@@ -2,7 +2,7 @@ import React from "react";
 import {VStack} from "native-base";
 import { Dimensions, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
-import images from '../../theme/images'
+import images from '../../../theme/images'
 import TopDonationsPack from "../TopPacks/TopDonationsPack";
 import TopDonationCard from "./TopDonationsCard";
 const screenHeight = Dimensions.get('window').height

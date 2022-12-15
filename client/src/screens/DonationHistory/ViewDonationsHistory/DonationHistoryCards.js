@@ -1,9 +1,9 @@
 import React from "react";
 import {VStack, Center } from "native-base";
 import { colors } from 'theme'
-import images from '../../theme/images'
+import images from '../../../theme/images'
 import { Dimensions, View, StyleSheet } from 'react-native'
-import DonationHistoryCard from "./DonationHistoryCard";n
+import DonationHistoryCard from "./DonationHistoryCard";
 import ViewDonationTopPack from "../TopPacks/ViewDonationTopPack";
 
 const screenHeight = Dimensions.get('window').height
@@ -35,23 +35,22 @@ const styles = StyleSheet.create({
 })*/}
 
 const DonationHistoryCards = () => {
-
   return (
     <View style={styles.root}>
-    <ImageBackground
-        source={images.background_img}
-        resizeMode="cover"
-        style={styles.img}
-      >
-    <VStack h="100%" w="100%" bg="white">
-      <ViewDonationTopPack/>
-      <VStack alignItems='flex-start' justifyContent="center" h="90%"  paddingX="30px" >
-       <DonationHistoryCard/>
-       <DonationHistoryCard/>
-       <DonationHistoryCard/>
-      </VStack>
-    </VStack>
-    </ImageBackground>
+      <ImageBackground
+          source={images.background_img}
+          resizeMode="cover"
+          style={styles.img}
+        >
+        <VStack h="100%" w="100%" bg="white">
+          <ViewDonationTopPack/>
+          <VStack alignItems='flex-start' justifyContent="center" h="90%"  paddingX="30px" >
+            <DonationHistoryCard/>
+            <DonationHistoryCard/>
+            <DonationHistoryCard/>
+          </VStack>
+        </VStack>
+      </ImageBackground>
     </View>
     );
 }

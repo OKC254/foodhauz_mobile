@@ -17,7 +17,7 @@ import { RecepientTabNavigator } from "./Tabs/RecepientTabNavigator";
 import DonorHistory from "../screens/History/DonorHistory";
 import RecepientHistory from "../screens/History/RecepientHistory";
 import DonationDetails from "../screens/DonationDetails";
-import DonationHistoryCards from "../screens/DonationHistory/ViewDonationsHistory/DonationHistoryCards";
+import DonationHistoryCards from "../screens/DonationHistory/ViewDonationsHistory/DonationHistoryCards.js"
 import TopDonationCards from "../screens/DonationHistory/TopDonationsHistory/TopDonationCards";
 
 
