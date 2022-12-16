@@ -101,7 +101,7 @@ const AllDonations = ({navigation}) => {
             </Pressable>
             <Spacer />
             <Text color="#FFFFFF" fontSize="20px" fontWeight="700">
-              History
+              All Donations
             </Text>
             <Spacer />
             <ThreeDotsIcon paddingRight="50px" color="white" />
@@ -110,7 +110,7 @@ const AllDonations = ({navigation}) => {
       </Box>
       <ScrollView p={"30px"}>
         <Text>Today</Text>
-        <VStack h="600" px={30} pt={5}>
+        <VStack h="600"  pt={5}>
           {loading ? (
             <SkeletonLoader />
           ) : (

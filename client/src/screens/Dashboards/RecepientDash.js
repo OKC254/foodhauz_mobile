@@ -71,7 +71,7 @@ export const categories = [
   {id: 5, value: "dessert", label: "Dessert"},
 ];
 
-const RecepientDash = () => {
+const RecepientDash = ({navigation}) => {
   const auth = useAuth();
   const {donations, setDonations} = DonationsState()
   const [loading, setLoading]=useState(false)
@@ -209,6 +209,7 @@ const RecepientDash = () => {
                     {donations?.slice(-2)?.map((donation) => {
                       return (
                         <TopDonationCard
+                        navigation={navigation}
                           key={donation._id}
                           donation={donation}
                         />

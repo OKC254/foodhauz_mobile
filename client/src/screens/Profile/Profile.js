@@ -26,6 +26,7 @@ import {
   Icon,
   Button,
   Stack,
+  Image,
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { images } from "../../theme";
@@ -55,9 +56,8 @@ const Profile = ({ navigation }) => {
   const auth = useAuth()
   return(
   <ScrollView>
+  <Image source={images.background_img} resizeMode="cover"/>
     <Box
-    source={images.background_img}
-      resizeMode="cover"
       style={styles.img}
     >
     <Box safeArea padding="40px">
