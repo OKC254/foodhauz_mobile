@@ -25,7 +25,7 @@ import { colors } from '../../theme'
 import MapDisplay from '../../components/Map'
 import RequestReceivedAlert from '../../components/RequestReceivedAlert'
 import { useAuth } from '../../hooks/useAuth'
-import { DonationsState } from '../../context'
+import { DonationPackState } from '../../context'
 import { BASE_API_URL } from '../../utils/api'
 import axios from 'axios';
 
@@ -63,12 +63,12 @@ const SelectLocation = ({ navigation }) => {
   const [show, setShow] = React.useState(false)
     const [error, setError] = React.useState("");
     const auth = useAuth();
-    const {donations} = DonationsState();
+    const {donationPack} = DonationPackState()
     const [loading, setLoading] = useState(false);
     const toast = useToast();
     const toastRef = useRef();
   const data = {
-    "foods": donations,
+    "foods": donationPack,
     "location": ["50.5", "70.0"],
     "creator": auth.user._id,
     "cancelled": false,
@@ -90,13 +90,14 @@ const SelectLocation = ({ navigation }) => {
      try {
        setLoading(true);
        const response = await axios.post(`${BASE_API_URL}/donations`,data ,config);
-       if (response.data && response.status === "201") {
+       if (response.data && response.status === 201) {
          setLoading(false);
 
          // Success 🎉
          console.log("response", response);
          setShow(true)
        }
+      console.log(data)
       } catch {(err) => {
         setError(err.message);
         console.log("upload " + err.message);
@@ -106,11 +107,20 @@ const SelectLocation = ({ navigation }) => {
     if (error) {
       showMessage(error);
     }
-  }, [error]);
+    if (loading) {
+      showLoading("loading");
+    }
+  }, [error, loading]);
 
   const showMessage = (errMessage) => {
     toastRef.current = toast.show({
       title: errMessage,
+      placement: "top",
+    });
+  };
+  const showLoading = (loadingText) => {
+    toastRef.current = toast.show({
+      title: loadingText,
       placement: "top",
     });
   };

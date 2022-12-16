@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import {
   Box,
   Center,
@@ -7,6 +7,7 @@ import {
   Pressable,
   Text,
   useDisclose,
+  useToast,
 } from 'native-base'
 import {
   MaterialCommunityIcons,
@@ -14,10 +15,15 @@ import {
 } from '@expo/vector-icons'
 import { colors } from '../../theme'
 import DonationPackSelect from '../../screens/DonationPack/DonationPackSelect'
+import { clearPack } from '../../utils/pack.utils'
+import { DonationPackState } from '../../context'
 
 const BottomNavDonations = ({ navigation }) => {
   const [selected, setSelected] = React.useState(0)
+  const {setDonationPack, donationPack} = DonationPackState()
   const {isOpen, onOpen, onClose} = useDisclose();
+  const toast = useToast()
+  const toastRef = useRef()
   const navigateToFirstScreen = () => {
     navigation.navigate('SelectLocation')
   }
@@ -36,7 +42,14 @@ const BottomNavDonations = ({ navigation }) => {
           opacity={selected === 0 ? 1 : 0.5}
           py="3"
           flex={1}
-          onPress={() => setSelected(0)}
+          onPress={() => {
+            setSelected(0)
+            clearPack(setDonationPack)
+            toastRef.current = toast.show({
+              title: "Cart Cleared",
+              placement: "bottom",
+            });
+            }}
         >
           <Center>
             <Icon
@@ -79,7 +92,14 @@ const BottomNavDonations = ({ navigation }) => {
           flex={1}
           onPress={() => {
             setSelected(1);
-            navigateToFirstScreen();
+            if (donationPack?.length != 0) {
+                navigateToFirstScreen();
+            } else {
+               toastRef.current = toast.show({
+                 title: "Please add at least one donation item to the pack",
+                 placement: "bottom",
+               });
+            }
           }}
         >
           <Center>
@@ -90,7 +110,6 @@ const BottomNavDonations = ({ navigation }) => {
               size="lg"
             />
             <Box
-              bg={selected === 1 ? `${colors.primary_color}` : "transparent"}
               flexDirection="row"
               alignItems="baseline"
             >
