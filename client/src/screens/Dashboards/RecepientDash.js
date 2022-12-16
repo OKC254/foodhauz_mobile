@@ -206,7 +206,7 @@ const RecepientDash = () => {
               <ScrollView>
                 {donations?.length > 0 ? (
                   <Box>
-                    {donations?.map((donation) => {
+                    {donations?.slice(-2)?.map((donation) => {
                       return (
                         <TopDonationCard
                           key={donation._id}

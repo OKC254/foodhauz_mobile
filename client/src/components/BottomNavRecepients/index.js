@@ -22,7 +22,7 @@ import {colors} from "../../theme";
 const BottomNavRecepient = ({navigation}) => {
   const [selected, setSelected] = React.useState(0);
   const navigateToFirstScreen = () => {
-    navigation.navigate("DonationPackStart");
+    navigation.navigate("AllDonations");
   };
 
   const navigateToSecondScreen = () => {

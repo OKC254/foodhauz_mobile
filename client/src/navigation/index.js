@@ -19,6 +19,7 @@ import RecepientHistory from "../screens/History/RecepientHistory";
 import DonationDetails from "../screens/DonationDetails";
 import DonationHistoryCards from "../screens/DonationHistory/ViewDonationsHistory/DonationHistoryCards.js"
 import TopDonationCards from "../screens/DonationHistory/TopDonationsHistory/TopDonationCards";
+import AllDonations from "../screens/AllDonations";
 
 
 const Stack = createStackNavigator();
@@ -104,6 +105,10 @@ const Navigator = () => {
             <Stack.Screen
               name="DonationHistoryCards"
               component={DonationHistoryCards}
+            />
+            <Stack.Screen
+              name="AllDonations"
+              component={AllDonations}
             />
           </Stack.Group>
         ) : (

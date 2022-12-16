@@ -2,7 +2,7 @@
 /* eslint-disable import/no-unresolved */
 import React, { useEffect, useRef } from 'react'
 import { View, Text } from 'react-native'
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 
 // import { useDispatch, useSelector } from 'react-redux'
 import MapViewDirections from 'react-native-maps-directions'
@@ -86,12 +86,37 @@ const MapDisplay = () => {
     //   )}
     // </MapView>
     <MapView
-    // style={{height:"100px", width:"500px"}}
-      apikey={GOOGLE_MAPS_APIKEY}
-      provider={PROVIDER_GOOGLE}
+    style={{height:"100%"}}
+      // apikey={GOOGLE_MAPS_APIKEY}
+      // provider={PROVIDER_GOOGLE}
       showUserLocation={true}
       mapType="standard"
-    />
+      initialRegion={{
+        latitude: -1.095201,
+        longitude: 37.0136959,
+        latitudeDelta: 0.015,
+        longitudeDelta: 0.0121,
+      }}
+    >    
+        <MapViewDirections
+          origin={"hi"}
+          destination={"hi"}
+          apikey={GOOGLE_MAPS_APIKEY}
+          strokeWidth={3}
+          strokeColor="black"
+        />
+
+    <Marker
+          coordinate={{
+            latitude: -1.095201,
+            longitude: 370136959,
+          }}
+          title="Origin"
+          description={"This is my marker"}
+          identifier="origin"
+        />
+
+    </MapView>
   );
 }
 

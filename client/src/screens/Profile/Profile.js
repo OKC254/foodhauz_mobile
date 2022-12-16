@@ -29,6 +29,7 @@ import {
 } from "native-base";
 import { Ionicons } from "@expo/vector-icons";
 import { images } from "../../theme";
+import { useAuth } from "../../hooks/useAuth";
 // import { constants } from '../../theme'
 
 // const screenHeight = Dimensions.get('window').height
@@ -50,7 +51,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-const Profile = ({ navigation }) => (
+const Profile = ({ navigation }) => {
+  const auth = useAuth()
+  return(
   <ScrollView>
     <Box
     source={images.background_img}
@@ -104,7 +107,7 @@ const Profile = ({ navigation }) => (
             font-size="20px"
             lineHeight="23px"
           >
-            Catherine Ndereba
+            {auth.user.name}
           </Heading>
           <Text
             width="159px"
@@ -115,7 +118,7 @@ const Profile = ({ navigation }) => (
             lineHeight="20px"
             color="#979494"
           >
-            catherine@gmail
+           {auth.user.email}
           </Text>
         </VStack>
         <Heading
@@ -149,6 +152,7 @@ const Profile = ({ navigation }) => (
                 />
               }
               placeholder="Catherine Ndereba"
+              value={auth.user.name}
               InputRightElement={
                 <Icon
                   as={<AntDesign name="edit" />}
@@ -178,6 +182,7 @@ const Profile = ({ navigation }) => (
                 />
               }
               placeholder="catherine@gmail.com"
+              value={auth.user.email}
               InputRightElement={
                 <Icon
                   as={<AntDesign name="edit" />}
@@ -195,8 +200,6 @@ const Profile = ({ navigation }) => (
             bg={colors.primary_color}
             position="relative"
             onPress={() => {
-              navigation.navigate("DonationPackStart");
-
               navigation.navigate("Home");
             }}
           >
@@ -226,9 +229,6 @@ const Profile = ({ navigation }) => (
               >
                 Turn on Location
               </Text>
-              <Text>
-                ghjssssssssssh
-              </Text>
               <Switch size="sm" />
             </HStack>
           </Box>
@@ -250,6 +250,6 @@ const Profile = ({ navigation }) => (
       </Box>
     </Box>
   </ScrollView>
-);
+)};
 
 export default Profile;
