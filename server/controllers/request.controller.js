@@ -1,95 +1,56 @@
 const asyncHandler = require("express-async-handler");
+const User = require("../../../ChatApp/ChatApp/server/models/userModel");
 const Donation = require("../models/donation.model");
-const Request = require("../models/request.model");
 
-const createDonationRequest = asyncHandler(async (req, res) => {
-  const {
-    donation,
-    requestor,
-    accepted,
-    delivered,
-    cancelled,
-    requested_date,
-    delivered_date,
-  } = req.body;
+const createRequest = asyncHandler(async (req, res) => {
+  const {donation, requestor, accepted, cancelled} = req.body;
 
-  if (!donation || !requested_date || !requestor) {
+  if (!foods || !location || !requestor) {
     res.status(400);
     throw new Error("Please fill all fields");
   }
 
-  const newRequest = {
-    donation,
-    requestor,
-    accepted,
-    delivered,
+  const newDonation = {
+    foods,
+    location,
+    creator,
+    approved,
     cancelled,
-    requested_date,
-    delivered_date,
   };
   try {
-    var request = await Request.create(newRequest);
-    request = await request.populate("requestor", "name email profile_pic");
+    var request = await Donation.create(newDonation);
+    donation = await donation.populate("creator", "name email profile_pic");
     if (donation) {
       res.status(201).json({
-        _id: request._id,
-        donation: request.donation,
-        requestor: request.requestor,
-        accepted: request.accepted,
-        delivered: request.delivered,
-        cancelled: request.cancelled,
-        requested_date: request.requested_date,
-        delivered_date: request.delivered_date,
+        _id: donation._id,
+        foods: donation.foods,
+        creator: donation.creator,
+        approved: donation.approved,
+        cancelled: donation.cancelled,
       });
     }
   } catch (error) {
     res.status(400);
-    throw new Error("Failed to create the donation request");
+    throw new Error("Failed to create the donation");
   }
 });
 
 // /api/user?search=janedoe
-const allDonationRequests = asyncHandler(async (req, res) => {
+const allDonations = asyncHandler(async (req, res) => {
   try {
-    await Request.find({requestor: req.query.user_id}).populate("requestor", "name profile_pic email").then(async (results) => {
-        results = await Donation.populate(results, {
-          path: "donation",
-          select: "location foods",
-        })
-        
-        console.log(results);
-        res.status(200).json(results);
-      })
+    const donations = await Donation.find({}, {}, {lean: true}).populate(
+      "creator",
+      "name profile_pic email"
+    );
+
+    res.status(200).json(donations);
   } catch (error) {
     res.status(400);
-    throw new Error("Failed to get the donation requests");
+    throw new Error("Failed to get the donations");
   }
 });
 
-const getDonationRequest = asyncHandler(async (req, res, next) => {
-  const id = req.params.id;
-
-  if (!id) {
-    console.log("donation request id parameter not sent with request");
-    return res.sendStatus(400);
-  }
-  try {
-    var donation = await Request.findOne({_id: req.params.id})
-      .populate("requestor", "name email profile_pic")
-      .populate("donation",
-      "location foods");
-
-    if (donation) {
-      res.status(200).json(donation);
-    } else {
-      return res.status(404).send("cannot find donation request with that id");
-    }
-  } catch (error) {
-    return res.status(500).send("cannot find donation request with that id");
-  }
-});
-
-const deleteDonationRequest = asyncHandler(async (req, res, next) => {
+const getDonation = asyncHandler(async (req, res, next) => {
   const id = req.params.id;
 
   if (!id) {
@@ -97,7 +58,27 @@ const deleteDonationRequest = asyncHandler(async (req, res, next) => {
     return res.sendStatus(400);
   }
   try {
-    const donation = await Request.findByIdAndDelete({_id: req.params.id});
+    var donation = await Donation.findOne({_id: req.params.id});
+
+    if (donation) {
+      res.status(200).json(donation);
+    } else {
+      return res.status(404).send("cannot find donation with that id");
+    }
+  } catch (error) {
+    return res.status(500).send("cannot find donation with that id");
+  }
+});
+
+const deleteDonation = asyncHandler(async (req, res, next) => {
+  const id = req.params.id;
+
+  if (!id) {
+    console.log("donation id parameter not sent with request");
+    return res.sendStatus(400);
+  }
+  try {
+    const donation = await Donation.findByIdAndDelete({_id: req.params.id});
     if (donation) {
       return res.status(201).json({
         message: "Donation deleted",
@@ -113,11 +94,11 @@ const deleteDonationRequest = asyncHandler(async (req, res, next) => {
   }
 });
 
-const updateDonationRequest = asyncHandler(async (req, res, next) => {
+const updateDonation = asyncHandler(async (req, res, next) => {
   try {
-    const donation = await Request.findById({_id: req.params.id});
+    const donation = await Donation.findById({_id: req.params.id});
     if (donation) {
-      const willBeUpdated = await Request.findByIdAndUpdate(
+      const willBeUpdated = await Donation.findByIdAndUpdate(
         {_id: req.params.id},
         req.body,
         {lean: true, new: true}
@@ -143,9 +124,9 @@ const updateDonationRequest = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = {
-  createDonationRequest,
-  allDonationRequests,
-  deleteDonationRequest,
-  updateDonationRequest,
-  getDonationRequest,
+  createDonation,
+  allDonations,
+  deleteDonation,
+  updateDonation,
+  getDonation,
 };

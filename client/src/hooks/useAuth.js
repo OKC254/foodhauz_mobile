@@ -22,12 +22,13 @@ function useProvideAuth() {
   const [user, setUser] = useState(null);
 
   // ... to save the user to state.
-  const signin = async (signinData) => {
-    const response = await axios.post(`${BASE_API_URL}/users/login`,signinData);
+  const signin = async (email, password) => {
+    const response = await axios.post(`${BASE_API_URL}/users/login`, {
+      email,
+      password,
+    });
     const data = response.data;
-    if (data.token) {
-      setUser(data);
-    }
+    setUser(data);
     return {...data};
   };
 
@@ -42,15 +43,13 @@ function useProvideAuth() {
           }
         );
         const data = response.data;
-        if (data.token) {
-          setUser(data)
-        }
+        setUser(data)
         return {...data}
     };
 
   const signout = async (token) => {
-    // localStorage.clear();
-    // sessionStorage.clear();
+    localStorage.clear();
+    sessionStorage.clear();
     axios.post(
       `${BASE_API_URL}/auth/logout`,
       {},

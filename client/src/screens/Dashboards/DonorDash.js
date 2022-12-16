@@ -10,7 +10,7 @@ import { Box, Flex, Image, VStack } from 'native-base'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '../../theme'
 import HomeCard from '../../components/HomeCard'
-import { useAuth } from '../../hooks/useAuth'
+import BottomNav from '../../components/BottomNav/index'
 
 const HomeLinks = [
   {
@@ -59,10 +59,7 @@ const styles = StyleSheet.create({
   },
 })
 
-const DonorDash = ({navigation}) => {
-  const auth = useAuth()
-
-  return(
+const DonorDash = () => (
   <SafeAreaView style={styles.root}>
     <StatusBar barStyle="light-content" />
     <VStack h="100%" w="100%" bg="white">
@@ -86,12 +83,12 @@ const DonorDash = ({navigation}) => {
             borderBottomRightRadius="20px"
           >
             <Box>
-              <Text style={styles.title}>Hi, {auth.user.name}</Text>
+              <Text style={styles.title}>Hi, Catherine</Text>
               <Text style={styles.title_desc}>
                 What would you like to donate today?
               </Text>
             </Box>
-            <Image source={auth.user.profile_pic || images.profile_img} alt="donation image" />
+            <Image source={images.profile_img} alt="donation image" />
           </Flex>
           <Flex
             alignItems="center"
@@ -105,7 +102,7 @@ const DonorDash = ({navigation}) => {
                 You’ve provided <Text style={styles.meals_txt}>17 meals</Text>{' '}
                 worth of food this year
               </Text>
-              <Text style={styles.history} onPress={()=> navigation.navigate("DonorHistory")}>View History</Text>
+              <Text style={styles.history}>View History</Text>
             </Box>
           </Flex>
         </VStack>
@@ -123,6 +120,6 @@ const DonorDash = ({navigation}) => {
       {/* <BottomNav /> */}
     </VStack>
   </SafeAreaView>
-)}
+)
 
 export default DonorDash

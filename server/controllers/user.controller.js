@@ -70,7 +70,7 @@ const authUser = asyncHandler(async (req, res) => {
     });
     res.status(200)
   } else {
-    res.status(401)
+    res.status(401);
     throw new Error("Invalid Email or Password");
   }
 });

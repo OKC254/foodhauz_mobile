@@ -4,10 +4,10 @@ import { colors } from 'theme'
 import {
   Box,
   Heading,
-  useToast,
   Avatar,
   Text,
   VStack,
+  Link,
   FormControl,
   Input,
   Button,
@@ -15,6 +15,7 @@ import {
   HStack,
   ScrollView,
   Icon as NIcon,
+  useToast,
   IconButton,
 } from 'native-base'
 import images from '../../theme/images'
