@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
-import React, { Component } from 'react'
-import { Platform, StyleSheet, View, Dimensions, TextInput } from 'react-native'
+import React, { useState, useRef,useEffect } from 'react'
+import { Platform, StyleSheet, Dimensions, TextInput } from 'react-native'
 import {
   Box,
   Button,
@@ -10,19 +10,24 @@ import {
   Icon,
   Image,
   Text,
+  View,
   Spacer,
   StatusBar,
   ThreeDotsIcon,
   VStack,
   Input,
   Pressable,
-} from 'native-base'
+  useToast,
+} from "native-base";
 import { SafeAreaView } from 'react-native-safe-area-context'
-// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { colors } from '../../theme'
 import MapDisplay from '../../components/Map'
 import RequestReceivedAlert from '../../components/RequestReceivedAlert'
+import { useAuth } from '../../hooks/useAuth'
+import { DonationsState } from '../../context'
+import { BASE_API_URL } from '../../utils/api'
+import axios from 'axios';
 
 const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width
@@ -33,7 +38,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: colors.lightGrayPurple,
+    backgroundColor: "none",
     height: screenHeight,
   },
   img: {
@@ -56,12 +61,65 @@ const styles = StyleSheet.create({
 
 const SelectLocation = ({ navigation }) => {
   const [show, setShow] = React.useState(false)
+    const [error, setError] = React.useState("");
+    const auth = useAuth();
+    const {donations} = DonationsState();
+    const [loading, setLoading] = useState(false);
+    const toast = useToast();
+    const toastRef = useRef();
+  const data = {
+    "foods": donations,
+    "location": ["50.5", "70.0"],
+    "creator": auth.user._id,
+    "cancelled": false,
+    "approved": false,
+    "requested": false,
+  };
+
+
+  const createDonation = async () => {
+     const token = auth.token ? auth.token : null;
+
+     const config = {
+       headers: {
+         "Content-type": "application/json",
+         Authorization: `Bearer ${token}`,
+       },
+     };
+
+     try {
+       setLoading(true);
+       const response = await axios.post(`${BASE_API_URL}/donations`,data ,config);
+       if (response.data && response.status === "201") {
+         setLoading(false);
+
+         // Success 🎉
+         console.log("response", response);
+         setShow(true)
+       }
+      } catch {(err) => {
+        setError(err.message);
+        console.log("upload " + err.message);
+      }}};
+
+  useEffect(() => {
+    if (error) {
+      showMessage(error);
+    }
+  }, [error]);
+
+  const showMessage = (errMessage) => {
+    toastRef.current = toast.show({
+      title: errMessage,
+      placement: "top",
+    });
+  };
   return (
     <SafeAreaView style={styles.root}>
       <StatusBar barStyle="light-content" />
-      <VStack h="100%" w="100%" bg="gray.100">
+      <VStack h="100%" w="100%" >
         <View>
-          <Box>
+          <Box bg="transparent" position={"absolute"} top={2} zIndex="10">
             <Box
               alignItems="center"
               h="70px"
@@ -92,33 +150,27 @@ const SelectLocation = ({ navigation }) => {
               </HStack>
             </Box>
           </Box>
-          <TouchableOpacity
-            onPress={() => navigation.navigate("DonorDashboard")}
-            // style={tw`bg-gray-100 absolute top-16 left-8 z-50 p-3 rounded-full shadow-lg`}
-          >
-            <Icon name="menu" />
-          </TouchableOpacity>
-          <View>
+          <View h={500}>
             <MapDisplay />
           </View>
-          <Box alignItems="center" h="50%" />
           <VStack
+            pt="10"
             alignItems="center"
             justifyContent="center"
-            h="40%"
             backgroundColor="white"
           >
             <Text fontWeight="bold" fontSize="20px" te>
-              Select Location
+              Select pick-up Location
             </Text>
             <Box alignItems="center">
-              <Box mb="8">
+              <Box mb="5">
                 <Input
                   height="50"
                   width="290"
                   mt="5"
                   variant="rounded"
                   placeholder="Search Location...."
+                  InputRightElement={<Icon/>}
                 />
               </Box>
             </Box>
@@ -129,7 +181,7 @@ const SelectLocation = ({ navigation }) => {
               textAlign="center"
               bg={colors.primary_color}
               position="relative"
-              onPress={() => setShow(true)}
+              onPress={createDonation}
             >
               Confirm Location
             </Button>

@@ -2,6 +2,7 @@ const express = require("express");
 const {
   createDonation,
   allDonations,
+  allUserDonations,
   updateDonation,
   getDonation,
   deleteDonation,
@@ -12,7 +13,11 @@ const router = express.Router();
 
 router.route("/").post(createDonation).get(
   // protect,
-  allDonations
+   allDonations);
+
+router.route("/:user_id").get(
+  protect,
+  allUserDonations
 );
 router.route("/:id").post(updateDonation).get(getDonation).delete(deleteDonation);
 

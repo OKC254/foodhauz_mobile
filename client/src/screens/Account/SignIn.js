@@ -58,12 +58,16 @@ const SignIn = ({ navigation }) => {
        return false;
      } else {
        // ... to save the user to state.
+       const userData = {
+         "email": email,
+         "password": password,
+       };
          auth
-           .signin({email, password})
+           .signin(userData)
            .then((response) => {
-             if (response.role === "donor") {
+             if (response.role == "donor") {
                navigation.navigate("DonorDashboard");
-             } else if (response.role === "recepient") {
+             } else if (response.role == "recepient") {
                navigation.navigate("RecepientDashboard");
              } else {
                setError("not yet authenticated");

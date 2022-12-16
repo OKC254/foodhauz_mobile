@@ -1,26 +1,26 @@
-import DonorDashboard from "../../screens/Dashboards/DonorDash";
+import RecepientDashboard from "../../screens/Dashboards/RecepientDash";
 
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import BottomNav from "../../components/BottomNav";
 import Profile from "../../screens/Profile";
 import Notifications from "../../screens/Notifications";
-import DonorHistory from "../../screens/History/DonorHistory";
+import BottomNavRecepient from "../../components/BottomNavRecepients";
+import RecepientHistory from "../../screens/History/RecepientHistory";
 
 const Tab = createBottomTabNavigator();
 
-export const DonorTabNavigator = () => (
+export const RecepientTabNavigator = () => (
   <Tab.Navigator
-    initialRouteName="DonorHomePage"
-    tabBar={(props) => <BottomNav {...props} />}
+    initialRouteName="RecepientHomePage"
+    tabBar={(props) => <BottomNavRecepient {...props} />}
   >
     <Tab.Screen
-      name="DonorHomePage"
-      component={DonorDashboard}
+      name="RecepientHomePage"
+      component={RecepientDashboard}
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
-      name="DonorHistory"
-      component={DonorHistory}
+      name="RecepientHistory"
+      component={RecepientHistory}
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen

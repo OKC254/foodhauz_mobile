@@ -1,13 +1,4 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable indent */
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-wrap-multilines */
-import React from 'react'
+import React from "react";
 import {
   Box,
   Center,
@@ -20,33 +11,33 @@ import {
   Footer,
   Text,
   View,
-} from 'native-base'
+} from "native-base";
 import {
   Ionicons,
   MaterialCommunityIcons,
   MaterialIcons,
-} from '@expo/vector-icons'
-import { colors } from '../../theme'
+} from "@expo/vector-icons";
+import {colors} from "../../theme";
 
-const BottomNav = ({ navigation }) => {
-  const [selected, setSelected] = React.useState(0)
+const BottomNavRecepient = ({navigation}) => {
+  const [selected, setSelected] = React.useState(0);
   const navigateToFirstScreen = () => {
-    navigation.navigate('DonationPackStart')
-  }
+    navigation.navigate("AllDonations");
+  };
 
   const navigateToSecondScreen = () => {
-    navigation.navigate('Notifications')
-  }
+    navigation.navigate("Notifications");
+  };
 
   const navigateToThirdScreen = () => {
-    navigation.navigate('Profile')
-  }
+    navigation.navigate("Profile");
+  };
   const navigateToFourthScreen = () => {
-    navigation.navigate('DonorHistory')
-  }
+    navigation.navigate("RecepientHistory");
+  };
   const navigateToFifthScreen = () => {
-    navigation.navigate('DonorHomePage')
-  }
+    navigation.navigate("RecepientHomePage");
+  };
   return (
     <Box bg="white" width="100%" alignSelf="center">
       <Center flex={1} />
@@ -62,7 +53,10 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 0 ? 1 : 0.5}
           py="3"
           flex={1}
-          onPress={() => {setSelected(0); navigateToFifthScreen()}}
+          onPress={() => {
+            setSelected(0);
+            navigateToFifthScreen();
+          }}
         >
           <Center>
             <Icon
@@ -89,7 +83,10 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 1 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => {setSelected(1);navigateToSecondScreen()}}
+          onPress={() => {
+            setSelected(1);
+            navigateToSecondScreen();
+          }}
         >
           <Center>
             <Icon
@@ -130,7 +127,10 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 3 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => {setSelected(3); navigateToFourthScreen()}}
+          onPress={() => {
+            setSelected(3);
+            navigateToFourthScreen();
+          }}
         >
           <Center>
             <Icon
@@ -153,7 +153,10 @@ const BottomNav = ({ navigation }) => {
           opacity={selected === 4 ? 1 : 0.5}
           py="2"
           flex={1}
-          onPress={() => {setSelected(4);navigateToThirdScreen()}}
+          onPress={() => {
+            setSelected(4);
+            navigateToThirdScreen();
+          }}
         >
           <Center>
             <Icon
@@ -180,6 +183,6 @@ const BottomNav = ({ navigation }) => {
       </HStack>
     </Box>
   );
-}
+};
 
-export default BottomNav
+export default BottomNavRecepient;
