@@ -2,9 +2,9 @@ import DonorDashboard from "../../screens/Dashboards/DonorDash";
 
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import BottomNav from "../../components/BottomNav";
-import History from "../../screens/History";
 import Profile from "../../screens/Profile";
 import Notifications from "../../screens/Notifications";
+import DonorHistory from "../../screens/History/DonorHistory";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,8 +19,8 @@ export const DonorTabNavigator = () => (
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen
-      name="History"
-      component={History}
+      name="DonorHistory"
+      component={DonorHistory}
       options={{icon: "home", headerShown: false}}
     />
     <Tab.Screen

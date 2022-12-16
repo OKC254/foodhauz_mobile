@@ -42,10 +42,10 @@ const BottomNav = ({ navigation }) => {
     navigation.navigate('Profile')
   }
   const navigateToFourthScreen = () => {
-    navigation.navigate('History')
+    navigation.navigate('DonorHistory')
   }
   const navigateToFifthScreen = () => {
-    navigation.navigate('DonorDashboard')
+    navigation.navigate('DonorHomePage')
   }
   return (
     <Box bg="white" width="100%" alignSelf="center">

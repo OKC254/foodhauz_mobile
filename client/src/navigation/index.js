@@ -11,9 +11,15 @@ import DonationPackCards from "../screens/DonationPack/DonationPackCards";
 import { DonorTabNavigator } from "./Tabs/DonorTabNavigator";
 import { DonationPageNavigator } from "./Tabs/DonationPageNavigator";
 import Profile from "../screens/Profile";
-import History from "../screens/History";
 import Notifications from "../screens/Notifications";
 import { useAuth } from "../hooks/useAuth";
+import { RecepientTabNavigator } from "./Tabs/RecepientTabNavigator";
+import DonorHistory from "../screens/History/DonorHistory";
+import RecepientHistory from "../screens/History/RecepientHistory";
+import DonationDetails from "../screens/DonationDetails";
+import DonationHistoryCards from "../screens/DonationHistory/ViewDonationsHistory/DonationHistoryCards.js"
+import TopDonationCards from "../screens/DonationHistory/TopDonationsHistory/TopDonationCards";
+import AllDonations from "../screens/AllDonations";
 
 
 const Stack = createStackNavigator();
@@ -43,49 +49,68 @@ const Navigator = () => {
     <NavigationContainer>
       <Stack.Navigator>
         {auth.user ? (
-            <Stack.Group>
-              <Stack.Screen
-                name="DonorDashboard"
-                component={DonorTabNavigator}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
-                name="RecepientDashboard"
-                component={DonorTabNavigator}
-                options={{headerShown: false}}
-              />
+          <Stack.Group>
+            <Stack.Screen
+              name="DonorDashboard"
+              component={DonorTabNavigator}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="RecepientDashboard"
+              component={RecepientTabNavigator}
+              options={{headerShown: false}}
+            />
 
-              <Stack.Screen
-                name="SelectLocation"
-                component={SelectLocation}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
-                name="DonationPackStart"
-                component={DonationPageNavigator}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
-                name="DonationPackCards"
-                component={DonationPackCards}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
-                name="Profile"
-                component={Profile}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
-                name="Notifications"
-                component={Notifications}
-                options={{headerShown: false}}
-              />
-              <Stack.Screen
-                name="History"
-                component={History}
-                options={{headerShown: false}}
-              />
-            </Stack.Group>
+            <Stack.Screen
+              name="SelectLocation"
+              component={SelectLocation}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="DonationPackStart"
+              component={DonationPageNavigator}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="DonationPackCards"
+              component={DonationPackCards}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Profile"
+              component={Profile}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="Notifications"
+              component={Notifications}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="RecepientHistory"
+              component={RecepientHistory}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="DonorHistory"
+              component={DonorHistory}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="DonationDetails"
+              component={DonationDetails}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen name="TopDonationCards" component={TopDonationCards} />
+            <Stack.Screen
+              name="DonationHistoryCards"
+              component={DonationHistoryCards}
+            />
+            <Stack.Screen
+              name="AllDonations"
+              component={AllDonations}
+            />
+          </Stack.Group>
         ) : (
           <Stack.Screen
             name="Unauthenticated"
