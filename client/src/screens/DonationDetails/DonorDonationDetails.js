@@ -1,5 +1,5 @@
-import { Dimensions, StyleSheet} from 'react-native'
-import React from 'react'
+import {Dimensions, StyleSheet} from "react-native";
+import React from "react";
 import {
   AspectRatio,
   Text,
@@ -16,26 +16,22 @@ import {
   View,
   Flex,
   VStack,
-  useToast,
 } from "native-base";
-import { colors } from '../../theme';
-import { useAuth } from '../../hooks/useAuth';
-import { useState } from 'react';
-import axios from 'axios';
-import { useEffect } from 'react';
-import { SkeletonLoader } from '../../components/GeneralLoading';
-import { BASE_API_URL } from '../../utils/api';
-import { useRef } from 'react';
-import RequestReceived from '../../components/RecepientRequest/RecepientRequest';
+import {colors} from "../../theme";
+import {useAuth} from "../../hooks/useAuth";
+import {useState} from "react";
+import axios from "axios";
+import {useEffect} from "react";
+import {SkeletonLoader} from "../../components/GeneralLoading";
+import {BASE_API_URL} from "../../utils/api";
 
-const DonationDetails = ({route, navigation}) => {
-   const [show, setShow] = React.useState(false);
+const DonorDonationDetails = ({route, navigation}) => {
   const screenWidth = Dimensions.get("window").width;
   const screenHeight = Dimensions.get("window").height;
   const auth = useAuth();
   const [requestDetails, setRequestDetails] = useState({});
   const [loading, setLoading] = useState(false);
-  const { donation_id }= route.params 
+  const {donation_id} = route.params;
 
   const fetchRequestDetails = async () => {
     const token = auth.token ? auth.token : null;
@@ -61,6 +57,7 @@ const DonationDetails = ({route, navigation}) => {
         setRequestDetails(response.data);
       }
     } catch (error) {
+        setLoading(false)
       // Error 😨
       if (error.response) {
         /*
@@ -89,80 +86,6 @@ const DonationDetails = ({route, navigation}) => {
     fetchRequestDetails();
   }, []);
 
-   const [error, setError] = React.useState("");
-   const [loadingRequest, setLoadingRequest] = useState(false);
-   const toast = useToast();
-   const toastRef = useRef();
-   const today = new Date()
-  const requestor_id = auth.user._id;
-   var iso = today.getDate()
-   console.log("iso",iso)
-   const data = {
-     "donation": [{donation_id}],
-    "requestor": [{requestor_id}],
-     "accepted": true,
-     "delivered": true,
-     "cancelled": false,
-     "requested_date": "2022-12-15T10:59:58.331Z",
-     "delivered_date": "2022-12-15T10:59:58.331Z",
-   };
-
-   const createDonationRequest = async () => {
-     const token = auth.token ? auth.token : null;
-
-     const config = {
-       headers: {
-         "Content-type": "application/json",
-         Authorization: `Bearer ${token}`,
-       },
-     };
-
-     try {
-       setLoading(true);
-       const response = await axios.post(
-         `${BASE_API_URL}/requests`,
-         data,
-         config
-       );
-       if (response.data && response.status === 201) {
-         setLoading(false);
-
-         // Success 🎉
-         console.log("response", response);
-         setShow(true);
-       }
-       console.log(data);
-     } catch {
-       (err) => {
-        setLoading(false)
-         setError(err.message);
-         console.log("upload " + err.message);
-       };
-     }
-   };
-
-   useEffect(() => {
-     if (error) {
-       showMessage(error);
-     }
-     if (loading) {
-       showLoading("loading");
-     }
-   }, [error, loading]);
-
-   const showMessage = (errMessage) => {
-     toastRef.current = toast.show({
-       title: errMessage,
-       placement: "top",
-     });
-   };
-   const showLoading = (loadingText) => {
-     toastRef.current = toast.show({
-       title: loadingText,
-       placement: "top",
-     });
-   };
-
   return (
     <View background={"white"} h={screenHeight}>
       <Box backgroundColor="#FFFFFF">
@@ -175,20 +98,20 @@ const DonationDetails = ({route, navigation}) => {
           bg={colors.primary_color}
           position="relative"
           onPress={() => {
-            navigation.navigate("RecepientDashboard");
+            navigation.navigate("DonorDashboard");
           }}
         >
           <HStack paddingTop="20px" alignItems="center">
             <Pressable
               onPress={() => {
-                navigation.navigate("RecepientDashboard");
+                navigation.navigate("DonorDashboard");
               }}
             >
               <ChevronLeftIcon paddingLeft="50px" color="white" />
             </Pressable>
             <Spacer />
             <Text color="#FFFFFF" fontSize="20px" fontWeight="700">
-              Donation Request Details
+              Donor Details
             </Text>
             <Spacer />
             <ThreeDotsIcon paddingRight="50px" color="white" />
@@ -314,16 +237,6 @@ const DonationDetails = ({route, navigation}) => {
                       </Text>
                     </HStack>
                   </HStack>
-                  <Button
-                    mt={5}
-                    borderRadius="50px"
-                    h="40px"
-                    bg={colors.primary_color}
-                    position="relative"
-                    onPress={createDonationRequest}
-                  >
-                    Request Donation
-                  </Button>
                 </Stack>
               </Box>
             </Box>
@@ -332,14 +245,8 @@ const DonationDetails = ({route, navigation}) => {
           )}
         </Box>
       )}
-      <RequestReceived
-        show={show}
-        setShow={setShow}
-        navigation={navigation}
-      />
     </View>
   );
-}
+};
 
-export default DonationDetails
-
+export default DonorDonationDetails;

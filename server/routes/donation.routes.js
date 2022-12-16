@@ -16,7 +16,7 @@ router.route("/").post(createDonation).get(
    allDonations);
 
 router.route("/:user_id").get(
-  protect,
+  // protect,
   allUserDonations
 );
 router.route("/:id").post(updateDonation).get(getDonation).delete(deleteDonation);

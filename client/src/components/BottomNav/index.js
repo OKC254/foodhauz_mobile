@@ -1,12 +1,3 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable indent */
-/* eslint-disable operator-linebreak */
-/* eslint-disable no-nested-ternary */
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/no-array-index-key */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-wrap-multilines */
 import React from 'react'
 import {
   Box,
@@ -14,12 +5,6 @@ import {
   HStack,
   Icon,
   Pressable,
-  useFormControlContext,
-  FooterTab,
-  Button,
-  Footer,
-  Text,
-  View,
 } from 'native-base'
 import {
   Ionicons,
