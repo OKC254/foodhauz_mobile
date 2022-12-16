@@ -1,15 +1,31 @@
 import React from 'react'
+// import image from "../assets/pizza.jpg";
+// import image from "../DonationPack/pizza.jpg";
 import {
   Box,
+  Heading,
   AspectRatio,
   Image,
   Text,
   ThreeDotsIcon,
+  Center,
   HStack,
+  Stack,
   VStack,
+  Spacer,
 } from 'native-base'
 
-const DonationCard = ({donation}) => (
+{
+  /* const CardList = [
+    {
+      cardname: "Pizza",
+      cardimage: `${image}`,
+      description: "10 packets",
+
+    }
+]; */
+}
+const DonationCard = () => (
   <Box alignItems="flex-start" mt="20px" paddingLeft="5px" paddingRight="5px">
     <Box
       w="full"
@@ -18,46 +34,42 @@ const DonationCard = ({donation}) => (
       borderColor="coolGray.200"
       borderWidth="1"
       _dark={{
-        borderColor: "coolGray.600",
-        backgroundColor: "gray.700",
+        borderColor: 'coolGray.600',
+        backgroundColor: 'gray.700',
       }}
       _web={{
         shadow: 2,
         borderWidth: 0,
       }}
       _light={{
-        backgroundColor: "gray.50",
+        backgroundColor: 'gray.50',
       }}
     >
       <HStack>
         <Box h="100%">
-          <AspectRatio w="55%" ratio={9 / 9}>
+          <AspectRatio w="50%" ratio={9 / 9}>
             <Image
               source={{
-                uri: donation.image
-                  ? donation.image
-                  : "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg",
+                uri: 'https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg',
               }}
-              alt="my image"
+              alt=" "
             />
           </AspectRatio>
         </Box>
-        <Box alignItems="flex-start" marginLeft="-65px" paddingTop="20px">
+        <Box alignItems="flex-start" marginLeft="-70px" paddingTop="20px">
           <VStack ml="5px">
             <Text
-              w="160px"
+              w="180px"
+              // h="19px"
               fontStyle="normal"
               fontWeight="400"
               fontSize="20px"
               color="#000000"
             >
-              {donation.food.map((f) => {
-                return <Text>{f}</Text>;
-              })}
+              Chicken Curry
             </Text>
             <Text w="59px" fontStyle="normal" fontWeight="700" fontSize="10px">
-              {donation.amount}
-              <Text> {donation.unit}</Text>
+              10 packets
             </Text>
           </VStack>
         </Box>
@@ -65,5 +77,5 @@ const DonationCard = ({donation}) => (
       </HStack>
     </Box>
   </Box>
-);
+)
 export default DonationCard

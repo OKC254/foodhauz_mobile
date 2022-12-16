@@ -50,6 +50,7 @@ const BottomNavDonations = ({ navigation }) => {
               size="lg"
             />
             <Box
+              bg={selected === 0 ? `${colors.primary_color}` : "transparent"}
               flexDirection="row"
               alignItems="baseline"
             >

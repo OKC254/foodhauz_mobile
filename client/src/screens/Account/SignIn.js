@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native'
 import { colors } from 'theme'
-import validator from "validator";
 import {
   Box,
   Heading,
@@ -12,11 +11,13 @@ import {
   Input,
   Button,
   HStack,
-  useToast,
+  Divider,
+  useToast
 } from 'native-base'
 import images from '../../theme/images'
 import { AntDesign, FontAwesome5 } from '@expo/vector-icons'
 import { useAuth } from '../../hooks/useAuth'
+import validator from "validator"
 
 // const screenHeight = Dimensions.get('window').height
 const screenWidth = Dimensions.get('window').width
@@ -58,16 +59,12 @@ const SignIn = ({ navigation }) => {
        return false;
      } else {
        // ... to save the user to state.
-       const userData = {
-         "email": email,
-         "password": password,
-       };
          auth
-           .signin(userData)
+           .signin({email, password})
            .then((response) => {
-             if (response.role == "donor") {
+             if (response.role === "donor") {
                navigation.navigate("DonorDashboard");
-             } else if (response.role == "recepient") {
+             } else if (response.role === "recepient") {
                navigation.navigate("RecepientDashboard");
              } else {
                setError("not yet authenticated");
