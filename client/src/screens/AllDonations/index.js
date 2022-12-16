@@ -119,7 +119,7 @@ const AllDonations = ({navigation}) => {
                 <Box>
                   {donations?.map((donation) => {
                     return (
-                      <TopDonationCard key={donation._id} donation={donation} />
+                      <TopDonationCard key={donation._id} donation={donation} navigation={navigation} />
                     );
                   })}
                 </Box>

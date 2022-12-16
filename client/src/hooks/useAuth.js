@@ -48,18 +48,16 @@ function useProvideAuth() {
         return {...data}
     };
 
-  const signout = async (token) => {
-    // localStorage.clear();
-    // sessionStorage.clear();
-    axios.post(
-      `${BASE_API_URL}/auth/logout`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+  const signout = async () => {
+    // axios.post(
+    //   `${BASE_API_URL}/auth/logout`,
+    //   {},
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   }
+    // );
     setUser(null);
     return true;
   };
