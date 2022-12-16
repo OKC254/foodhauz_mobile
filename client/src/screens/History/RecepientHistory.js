@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "native-base";
 import {colors} from "../../theme";
-import DonationItem from "../../components/DonationItem";
+import { DonationItemRecepient } from "../../components/DonationItem";
 import { BASE_API_URL } from "../../utils/api";
 import axios from "axios";
 import { useState } from "react";
@@ -118,11 +118,11 @@ const RecepientHistory = ({navigation}) => {
             {requests?.length > 0 ? (
               <Box>
                 {requests?.map((request) => {
-                  return <DonationItem navigation={navigation} key={request._id} donation={request} />;
+                  return <DonationItemRecepient navigation={navigation} key={request._id} donation={request} route={"DonationDetails"} />;
                 })}
               </Box>
             ) : (
-              <Text>No donations yet</Text>
+              <Text>No donations requests yet</Text>
             )}
           </Box>
         )}

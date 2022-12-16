@@ -20,6 +20,7 @@ import DonationDetails from "../screens/DonationDetails";
 import DonationHistoryCards from "../screens/DonationHistory/ViewDonationsHistory/DonationHistoryCards.js"
 import TopDonationCards from "../screens/DonationHistory/TopDonationsHistory/TopDonationCards";
 import AllDonations from "../screens/AllDonations";
+import DonorDonationDetails from "../screens/DonationDetails/DonorDonationDetails";
 
 
 const Stack = createStackNavigator();
@@ -101,13 +102,22 @@ const Navigator = () => {
               component={DonationDetails}
               options={{headerShown: false}}
             />
-            <Stack.Screen name="TopDonationCards" component={TopDonationCards} />
+            <Stack.Screen
+              name="DonorDonationDetails"
+              component={DonorDonationDetails}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="TopDonationCards"
+              component={TopDonationCards}
+            />
             <Stack.Screen
               name="DonationHistoryCards"
               component={DonationHistoryCards}
             />
             <Stack.Screen
               name="AllDonations"
+              options={{headerShown: false}}
               component={AllDonations}
             />
           </Stack.Group>
