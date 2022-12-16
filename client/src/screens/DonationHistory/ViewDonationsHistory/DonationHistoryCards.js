@@ -2,7 +2,7 @@ import React from "react";
 import {VStack, Center } from "native-base";
 import { colors } from 'theme'
 import images from '../../../theme/images'
-import { Dimensions, View, StyleSheet } from 'react-native'
+import { Dimensions, View, StyleSheet,ImageBackground } from 'react-native'
 import DonationHistoryCard from "./DonationHistoryCard";
 import ViewDonationTopPack from "../TopPacks/ViewDonationTopPack";
 

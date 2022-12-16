@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import {StyleSheet, StatusBar, Text} from "react-native";
 import {colors} from "theme";
-import {Box, Flex, Image, VStack} from "native-base";
+import {Box, Circle, Flex, HStack, Image, ScrollView, Stack, VStack} from "native-base";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {images} from "../../theme";
-import HomeCard from "../../components/HomeCard";
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 import { DonationsState } from "../../context";
 import { SkeletonLoader } from "../../components/GeneralLoading";
 import { BASE_API_URL } from "../../utils/api";
+import TopDonationCard from "../../components/DonationCard";
 
 const HomeLinks = [
   {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: colors.lightGrayPurple,
+    backgroundColor: "white",
   },
   title: {
     fontSize: 20,
@@ -58,6 +58,18 @@ const styles = StyleSheet.create({
     width: "80%",
   },
 });
+
+export const categories = [
+  {
+    id: 1,
+    value: "cooked",
+    label: "Cooked",
+  },
+  {id: 2, value: "raw food", label: "Raw"},
+  {id: 3, value: "fruits", label: "Fruits"},
+  {id: 4, value: "drinks", label: "Drinks"},
+  {id: 5, value: "dessert", label: "Dessert"},
+];
 
 const RecepientDash = () => {
   const auth = useAuth();
@@ -115,64 +127,103 @@ const RecepientDash = () => {
   useEffect(() => {
     fetchDonations();
   }, []);
-  return(
-  <SafeAreaView style={styles.root}>
-    <StatusBar barStyle="light-content" />
-    <VStack h="100%" w="100%" bg="white">
-      <VStack w="100%">
-        <VStack
-          bg={colors.background_color}
-          w="100%"
-          h="130"
-          borderBottomLeftRadius="20px"
-          borderBottomRightRadius="20px"
-          alignSelf="baseline"
-        >
-          <Flex
-            flexDir="row"
-            bg={colors.primary_color}
-            p="30px"
-            h="130"
-            alignItems="center"
-            justifyContent="space-between"
+  return (
+    <SafeAreaView style={styles.root}>
+      <StatusBar barStyle="light-content" />
+      <VStack h="100%" w="100%" bg="white">
+        <VStack w="100%">
+          <VStack
+            bg={colors.background_color}
+            w="100%"
+            h="260"
             borderBottomLeftRadius="20px"
             borderBottomRightRadius="20px"
+            alignSelf="baseline"
           >
-            <Box>
-              <Text style={styles.title}>Hi, Catherine</Text>
-              <Text style={styles.title_desc}>
-                What would you like to donate today?
-              </Text>
+            <Flex
+              flexDir="row"
+              bg={colors.primary_color}
+              p="30px"
+              h="130"
+              alignItems="center"
+              justifyContent="space-between"
+              borderBottomLeftRadius="20px"
+              borderBottomRightRadius="20px"
+            >
+              <Box>
+                <Text style={styles.title}>Hi, {auth.user.name}</Text>
+                <Text style={styles.title_desc}>
+                  Check out recent food donations here
+                </Text>
+              </Box>
+              <Image source={images.profile_img} alt="donation image" />
+            </Flex>
+            <Box
+              px="30px"
+              pt={2}
+            >
+              <Text>Categories</Text>
+              <ScrollView horizontal pt={2}>
+                <HStack
+                  space={{
+                    base: 2,
+                    sm: 4,
+                  }}
+                  mx={{
+                    base: "auto",
+                    md: 0,
+                  }}
+                >
+                  {categories.map((cat) => {
+                    return (
+                      <Stack
+                        space={2}
+                        key={cat.id}
+                        alignItems="center"
+                        w="70px"
+                      >
+                        <Circle
+                          // py="7"
+                          // px="7"
+                          w={16}
+                          h={16}
+                          borderRadius="30"
+                          bg="gray.300"
+                        ></Circle>
+                        <Text>{cat.label}</Text>
+                      </Stack>
+                    );
+                  })}
+                </HStack>
+              </ScrollView>
             </Box>
-            <Image source={images.profile_img} alt="donation image" />
-          </Flex>
-        </VStack>
-      <VStack h="600" px={30} pt={5}>
-        <Text>Recent Donations</Text>
-        {
-          loading ? <SkeletonLoader/> : (
-            <Box>
-              {
-                donations?.length > 0 ? (
+          </VStack>
+          <VStack h="600" px={30} pt={5}>
+            <Text>Recent Donations</Text>
+            {loading ? (
+              <SkeletonLoader />
+            ) : (
+              <ScrollView>
+                {donations?.length > 0 ? (
                   <Box>
-                    {
-                      donations?.map((donation) => {
-                        return(
-                          <Text>{donation._id}</Text>
-                        )
-                      })
-                    }
-                </Box>
-                ):
-                <Text>No donations yet</Text>
-              }
-            </Box>
-          )
-        }
+                    {donations?.map((donation) => {
+                      return (
+                        <TopDonationCard
+                          key={donation._id}
+                          donation={donation}
+                        />
+                      );
+                    })}
+                  </Box>
+                ) : (
+                  <Text>No donations yet</Text>
+                )}
+              </ScrollView>
+            )}
+          </VStack>
+        </VStack>
       </VStack>
-      </VStack>
-    </VStack>
-  </SafeAreaView>
-)}
+    </SafeAreaView>
+  );}
 
 export default RecepientDash;

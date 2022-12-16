@@ -14,14 +14,13 @@ const TopDonationCard = () => (
   <Box alignItems="flex-start" mt="20px" paddingLeft="5px" paddingRight="5px">
     <Box alignItems="center">
       <Box w="100%" rounded="lg" overflow="hidden" borderColor="coolGray.200" borderWidth="1" _dark={{
-      borderColor: "coolGray.600",
-      backgroundColor: "gray.700"
-    }} _web={{
-      shadow: 2,
-      borderWidth: 0
-    }} _light={{
-      backgroundColor: "gray.50"
-    }}>
+        // borderColor: "coolGray.600",
+        backgroundColor: "white"
+        }} _web={{
+          shadow: 2,
+          borderWidth: 0
+        }} _light={{
+          backgroundColor: "white"}}>
         <Box>
           <AspectRatio w="100%" ratio={16 / 6}>
             <Image source={{
@@ -30,7 +29,7 @@ const TopDonationCard = () => (
           </AspectRatio>
         </Box>
         <Stack p="1" space={1}>
-          <Stack space={1}>
+          <Stack space={1} p={3}>
             <Heading size="md" ml="-1">
               The Garden City
             </Heading>

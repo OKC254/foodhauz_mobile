@@ -26,33 +26,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 })
-const DonationPackSelect = ({isOpen, onClose}) => {
-   const {donationPack, setDonationPack} = DonationPackState();
-  const [category, setCategory] = useState("cooked");
-    const [foods, setFoods] = useState([]);
-    const [food, setFood] = useState([]);
-    const [units, setUnits] = useState("");
-    const [amount, setAmount] = useState(0);
-    const [images, setImages] = useState([]);
-    const [description, setDescription] = useState([]);
-    const [error, setError] = useState("");
-    const toast = useToast();
-    const toastRef = useRef();
-  const pickImageAsync = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      quality: 1
-    })
 
-    if (!result.canceled) {
-      console.log(result)
-      setImages(prev => ([...prev, result.assets[0].uri]));
-    } else {
-      alert('You did not select any image')
-    }
-  }
-
-  const categories = [
+export const categories = [
     {
       id: 1,
       value: "cooked",
@@ -71,7 +46,33 @@ const DonationPackSelect = ({isOpen, onClose}) => {
       value: "dessert",
       label: "Dessert"},
   ];
-    
+
+const DonationPackSelect = ({isOpen, onClose}) => {
+   const {donationPack, setDonationPack} = DonationPackState();
+  const [category, setCategory] = useState("cooked");
+    const [foods, setFoods] = useState([]);
+    const [food, setFood] = useState([]);
+    const [units, setUnits] = useState("");
+    const [amount, setAmount] = useState(0);
+    const [images, setImages] = useState([]);
+    const [description, setDescription] = useState([]);
+    const [error, setError] = useState("");
+    const toast = useToast();
+    const toastRef = useRef();
+
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1
+    })
+
+    if (!result.canceled) {
+      console.log(result)
+      setImages(prev => ([...prev, result.assets[0].uri]));
+    } else {
+      alert('You did not select any image')
+    }
+  } 
   
 
   const onSubmit = async () => {
