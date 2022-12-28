@@ -209,7 +209,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 Juliana Sau - [@juliana_sau](https://twitter.com/juliana_sau) - julienyange@gmail.com
-Oscar Kiplimo - [@juliana_sau](https://twitter.com/juliana_sau) - 
+Oscar Kiplimo - [@kiplimo_oscar](https://twitter.com/kiplimo_oscar) - oscarkiplimo@gmail.com
 Elijah Mutemi - [@juliana_sau](https://twitter.com/njeveh) - njeveh@gmail.com
 John Gimase - [@juliana_sau](https://github.com/JK11751) - kgimase@gmail.com
 
